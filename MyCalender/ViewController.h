@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController{
-    IBOutlet UIScrollView *scroller;
+
+    __weak IBOutlet UIView *subView;
 }
 
 
