@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController{
 
     __weak IBOutlet UIView *subView;
+    __weak IBOutlet NSLayoutConstraint *heightConstraint;
 }
 
 

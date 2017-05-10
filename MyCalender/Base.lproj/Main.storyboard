@@ -34,23 +34,13 @@
                                 <rect key="frame" x="0.0" y="100" width="320" height="468"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djh-gl-q5O">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="3200"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXr-0Z-6Mg">
-                                                <rect key="frame" x="8" y="8" width="42" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="4000"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="3200" id="rvi-w8-lHQ"/>
+                                            <constraint firstAttribute="height" constant="4000" id="rvi-w8-lHQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="djh-gl-q5O" secondAttribute="bottom" id="B5n-da-0Md"/>
                                     <constraint firstItem="djh-gl-q5O" firstAttribute="leading" secondItem="KtU-vl-dlb" secondAttribute="leading" id="DKj-k3-0Ht"/>
@@ -73,6 +63,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="heightConstraint" destination="rvi-w8-lHQ" id="d5a-JT-mNY"/>
                         <outlet property="subView" destination="djh-gl-q5O" id="Ib6-3p-Gdf"/>
                     </connections>
                 </viewController>
