@@ -33,6 +33,8 @@ double mbYcoord=0;
     // Do any additional setup after loading the view, typically from a nib.
     [self myCalView];
     [self displayMonth:&mbYcoord];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
     //scroller.backgroundColor=[UIColor redColor];
     /*[scroller setTranslatesAutoresizingMaskIntoConstraints:NO];
     
@@ -149,13 +151,112 @@ double mbYcoord=0;
     NSDictionary *views = NSDictionaryOfVariableBindings(monthBoard);
     
     NSArray *horizontalConstraints =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[monthBoard]-0-|" options:0 metrics:nil views:views];
-    NSArray *heightConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[monthBoard(320)]-5-|" options:0 metrics:nil views:views];
+    NSArray *heightConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[monthBoard(340)]-0-|" options:0 metrics:nil views:views];
     [subView addConstraints:horizontalConstraints];
     [subView addConstraints:heightConstraints1];
     return monthBoard;
 }
+-(UILabel*)createLabel:(NSString*)color :(UIView*)monthBoard{
+    UILabel *label=[[UILabel alloc]init];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setTextColor:[UIColor redColor]];
+    
+    if([color isEqualToString:@"white"])
+        [label setBackgroundColor:[UIColor whiteColor]];
+    if([color isEqualToString:@"green"])
+        [label setBackgroundColor:[UIColor greenColor]];
+    if([color isEqualToString:@"blue"])
+        [label setBackgroundColor:[UIColor blueColor]];
+    
+    [label setFont:[UIFont systemFontOfSize:18]];
+    [label setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [monthBoard addSubview:label];
+    return label;
+}
+-(UIButton*)createRoundedButton:(NSString*)color :(UIView*)monthBoard{
+    UIButton *label=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [label setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [label setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    //[label setNeedsLayout];
+    //[label layoutIfNeeded];
+    //NSLog(@"label width:%f",label.frame.size.width);
+    //label.layer.cornerRadius=label.frame.size.width/2.0;
+    label.layer.masksToBounds=YES;
+    
+    if([color isEqualToString:@"white"])
+        [label setBackgroundColor:[UIColor whiteColor]];
+    if([color isEqualToString:@"green"])
+        [label setBackgroundColor:[UIColor greenColor]];
+    if([color isEqualToString:@"blue"])
+        [label setBackgroundColor:[UIColor blueColor]];
 
--(void)displayMonth:(double *)mbYcoord{
+    [monthBoard addSubview:label];
+    return label;
+}
+-(void)createRow:(int)rowNum :(UIView*)monthBoard :(int)day1 :(int)day2 :(int)day3 :(int)day4 :(int)day5 :(int)day6 :(int)day7{
+    UIButton *label1=[self createRoundedButton:@"white" :monthBoard];
+    UIButton *label2=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label3=[self createRoundedButton:@"blue" :monthBoard];
+    UIButton *label4=[self createRoundedButton:@"white" :monthBoard];
+    UIButton *label5=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label6=[self createRoundedButton:@"blue" :monthBoard];
+    UIButton *label7=[self createRoundedButton:@"white" :monthBoard];
+
+    [label1 setTitle:[NSString stringWithFormat:@"%d",day1] forState:UIControlStateNormal];
+    [label2 setTitle:[NSString stringWithFormat:@"%d",day2] forState:UIControlStateNormal];
+    [label3 setTitle:[NSString stringWithFormat:@"%d",day3] forState:UIControlStateNormal];
+    [label4 setTitle:[NSString stringWithFormat:@"%d",day4] forState:UIControlStateNormal];
+    [label5 setTitle:[NSString stringWithFormat:@"%d",day5] forState:UIControlStateNormal];
+    [label6 setTitle:[NSString stringWithFormat:@"%d",day6] forState:UIControlStateNormal];
+    [label7 setTitle:[NSString stringWithFormat:@"%d",day7] forState:UIControlStateNormal];
+    
+    NSDictionary *views=NSDictionaryOfVariableBindings(label1,label2,label3,label4,label5,label6,label7);
+    
+    NSArray *horizontalConstraints1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[label1]-0-[label2]-0-[label3]-0-[label4]-0-[label5]-0-[label6]-0-[label7]-0-|" options:0 metrics:nil views:views];
+    [monthBoard addConstraints:horizontalConstraints1];
+    
+    for(int i=1;i<7;i++){
+        NSMutableString *labelMonth=@"";
+        NSString *newString=[labelMonth stringByAppendingFormat:@"[label%d(==label%d)]",i,i+1];
+        NSLog(@"%@", newString);
+        NSArray *equalWidthConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:newString options:0 metrics:nil views:views];
+        [monthBoard addConstraints:equalWidthConstraints1];
+    }
+    [label1 setNeedsLayout];
+    [label1 layoutIfNeeded];
+    NSLog(@"label width:%f",label1.frame.size.width);
+    for(int i=1;i<=7;i++){
+        NSMutableString *labelMonth=@"";
+        NSString *newString;
+        if (rowNum==1)
+            newString=[labelMonth stringByAppendingFormat:@"V:|-40-[label%d(%f)]|",i,label1.frame.size.width];
+        if (rowNum==2)
+            newString=[labelMonth stringByAppendingFormat:@"V:|-100-[label%d(%f)]|",i,label1.frame.size.width];
+        if (rowNum==3)
+            newString=[labelMonth stringByAppendingFormat:@"V:|-160-[label%d(%f)]|",i,label1.frame.size.width];
+        if (rowNum==4)
+            newString=[labelMonth stringByAppendingFormat:@"V:|-220-[label%d(%f)]|",i,label1.frame.size.width];
+        if (rowNum==5)
+            newString=[labelMonth stringByAppendingFormat:@"V:|-280-[label%d(%f)]|",i,label1.frame.size.width];
+        if (rowNum==6)
+            newString=[labelMonth stringByAppendingFormat:@"V:|-340-[label%d(%f)]|",i,label1.frame.size.width];
+        if (rowNum==7)
+            newString=[labelMonth stringByAppendingFormat:@"V:|-400-[label%d(%f)]|",i,label1.frame.size.width];
+        
+        NSLog(@"%@", newString);
+        NSArray *heightConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:newString options:0 metrics:nil views:views];
+        [monthBoard addConstraints:heightConstraints1];
+    }
+    label1.layer.cornerRadius=label1.frame.size.width/2.0;
+    label2.layer.cornerRadius=label1.frame.size.width/2.0;
+    label3.layer.cornerRadius=label1.frame.size.width/2.0;
+    label4.layer.cornerRadius=label1.frame.size.width/2.0;
+    label5.layer.cornerRadius=label1.frame.size.width/2.0;
+    label6.layer.cornerRadius=label1.frame.size.width/2.0;
+    label7.layer.cornerRadius=label1.frame.size.width/2.0;
+    
+}
+-(void)createFirstRow:(UIView*)monthBoard{
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     //get first day of month's weekday
@@ -180,102 +281,95 @@ double mbYcoord=0;
     int yVal=60;
     int yCount=1;
     int displayMonthXCoord=(newWeekDay*45)+7;
-
-    UIView *monthBoard=[self createMonthBoard];
+    
+    //UIView *monthBoard=[self createMonthBoard];
     
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"LLL"];
     NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-
+    
     NSDate *dateFromDateComponentsForDate = [greCalendar dateFromComponents:components];
     
-    //UILabel *labelMonth=[[UILabel alloc]initWithFrame:CGRectMake(displayMonthXCoord-5, 0, 50, 25)];
-    UITextView *labelMonth1=[[UITextView alloc]init];
-    UITextView *labelMonth2=[[UITextView alloc]init];
-    UITextView *labelMonth3=[[UITextView alloc]init];
-    UITextView *labelMonth4=[[UITextView alloc]init];
-    UITextView *labelMonth5=[[UITextView alloc]init];
-    UITextView *labelMonth6=[[UITextView alloc]init];
-    UITextView *labelMonth7=[[UITextView alloc]init];
-    UITextView *labelMonth8=[[UITextView alloc]init];
-    [labelMonth1 setTextAlignment:NSTextAlignmentCenter];
-    [labelMonth2 setTextAlignment:NSTextAlignmentCenter];
-    [labelMonth3 setTextAlignment:NSTextAlignmentCenter];
-    [labelMonth4 setTextAlignment:NSTextAlignmentCenter];
-    [labelMonth5 setTextAlignment:NSTextAlignmentCenter];
-    [labelMonth6 setTextAlignment:NSTextAlignmentCenter];
-    [labelMonth7 setTextAlignment:NSTextAlignmentCenter];
-    [labelMonth8 setTextAlignment:NSTextAlignmentCenter];
+    UILabel *label1=[self createLabel:@"white" :monthBoard];
+    UILabel *label2=[self createLabel:@"green" :monthBoard];
+    UILabel *label3=[self createLabel:@"blue" :monthBoard];
+    UILabel *label4=[self createLabel:@"white" :monthBoard];
+    UILabel *label5=[self createLabel:@"green" :monthBoard];
+    UILabel *label6=[self createLabel:@"blue" :monthBoard];
+    UILabel *label7=[self createLabel:@"white" :monthBoard];
     if(weekday==1)
-        [labelMonth1 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
+        [label1 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     if(weekday==2)
-        [labelMonth2 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
+        [label2 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     if(weekday==3)
-        [labelMonth3 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
+        [label3 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     if(weekday==4)
-        [labelMonth4 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
+        [label4 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     if(weekday==5)
-        [labelMonth5 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
+        [label5 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     if(weekday==6)
-        [labelMonth6 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
+        [label6 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     if(weekday==7)
-        [labelMonth7 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
-    if(weekday==2)
-        [labelMonth8 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
-    [labelMonth1 setTextColor:[UIColor redColor]];
-    [labelMonth2 setTextColor:[UIColor redColor]];
-    [labelMonth3 setTextColor:[UIColor redColor]];
-    [labelMonth4 setTextColor:[UIColor redColor]];
-    [labelMonth5 setTextColor:[UIColor redColor]];
-    [labelMonth6 setTextColor:[UIColor redColor]];
-    [labelMonth7 setTextColor:[UIColor redColor]];
-
-    [labelMonth1 setFont:[UIFont systemFontOfSize:18]];
-    [labelMonth2 setFont:[UIFont systemFontOfSize:18]];
-    [labelMonth3 setFont:[UIFont systemFontOfSize:18]];
-    [labelMonth4 setFont:[UIFont systemFontOfSize:18]];
-    [labelMonth5 setFont:[UIFont systemFontOfSize:18]];
-    [labelMonth6 setFont:[UIFont systemFontOfSize:18]];
-    [labelMonth7 setFont:[UIFont systemFontOfSize:18]];
-
-    [labelMonth1 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [labelMonth2 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [labelMonth3 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [labelMonth4 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [labelMonth5 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [labelMonth6 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [labelMonth7 setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-    [monthBoard addSubview:labelMonth1];
-    [monthBoard addSubview:labelMonth2];
-    [monthBoard addSubview:labelMonth3];
-    [monthBoard addSubview:labelMonth4];
-    [monthBoard addSubview:labelMonth5];
-    [monthBoard addSubview:labelMonth6];
-    [monthBoard addSubview:labelMonth7];
-
-    NSDictionary *views=NSDictionaryOfVariableBindings(labelMonth1,labelMonth2,labelMonth3,labelMonth4,labelMonth5,labelMonth6,labelMonth7);
+        [label7 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     
-    NSArray *horizontalConstraints1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[labelMonth1]-0-[labelMonth2]-0-[labelMonth3]-0-[labelMonth4]-0-[labelMonth5]-0-[labelMonth6]-0-[labelMonth7]-0-|" options:0 metrics:nil views:views];
+    NSDictionary *views=NSDictionaryOfVariableBindings(label1,label2,label3,label4,label5,label6,label7);
+    
+    NSArray *horizontalConstraints1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[label1]-0-[label2]-0-[label3]-0-[label4]-0-[label5]-0-[label6]-0-[label7]-0-|" options:0 metrics:nil views:views];
     [monthBoard addConstraints:horizontalConstraints1];
     
     for(int i=1;i<7;i++){
         NSMutableString *labelMonth=@"";
-        NSString *newString=[labelMonth stringByAppendingFormat:@"[labelMonth%d(==labelMonth%d)]",i,i+1];
+        NSString *newString=[labelMonth stringByAppendingFormat:@"[label%d(==label%d)]",i,i+1];
         NSLog(@"%@", newString);
         NSArray *equalWidthConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:newString options:0 metrics:nil views:views];
         [monthBoard addConstraints:equalWidthConstraints1];
-
+        
     }
     
     for(int i=1;i<=7;i++){
         NSMutableString *labelMonth=@"";
-        NSString *newString=[labelMonth stringByAppendingFormat:@"V:|-5-[labelMonth%d(40)]-5-|",i];
+        NSString *newString=[labelMonth stringByAppendingFormat:@"V:|[label%d(39)]|",i];
         NSLog(@"%@", newString);
         NSArray *heightConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:newString options:0 metrics:nil views:views];
         [monthBoard addConstraints:heightConstraints1];
     }
+}
+-(void)displayMonth:(double *)mbYcoord{
+    UIView *monthBoard=[self createMonthBoard];
+    [self createFirstRow:monthBoard];
     
+    int day1=0,day2=0,day3=0,day4=0,day5=0,day6=0,day7=0;
+    int rowNum=1;
+    for (int i=1; i<=numDays; i++) {
+            if(weekday==1)
+                day1=i;
+            if(weekday==2)
+                day2=i;
+            if(weekday==3)
+                day3=i;
+            if(weekday==4)
+                day4=i;
+            if(weekday==5)
+                day5=i;
+            if(weekday==6)
+                day6=i;
+        if(weekday==7){
+            day7=i;
+            [self createRow:rowNum :monthBoard :day1 :day2 :day3 :day4 :day5 :day6 :day7];
+            day1=0;
+            day2=0;
+            day3=0;
+            day4=0;
+            day5=0;
+            day6=0;
+            day7=0;
+            rowNum++;
+            weekday=0;
+        }
+            weekday++;
+    }
+    [self createRow:rowNum :monthBoard :day1 :day2 :day3 :day4 :day5 :day6 :day7];
+
     /*for (int startD=1; startD<=numDays; startD++) {
         
         UIButton *addProject = [UIButton buttonWithType: UIButtonTypeRoundedRect];
