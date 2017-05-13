@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BC1EC3DC7500869084 /* addEventViewController.m */; };
+		313C27C01EC4AFF900869084 /* topView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BF1EC4AFF900869084 /* topView.m */; };
+		313C27C21EC4B1B100869084 /* topView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313C27C11EC4B1B100869084 /* topView.xib */; };
 		31B02CC31EBF067A0057E7E2 /* displayTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B02CC21EBF067A0057E7E2 /* displayTopViewController.m */; };
 		31D0F8201E12893700C5E515 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F81F1E12893700C5E515 /* main.m */; };
 		31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F8221E12893700C5E515 /* AppDelegate.m */; };
@@ -36,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		313C27BB1EC3DC7500869084 /* addEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEventViewController.h; sourceTree = "<group>"; };
+		313C27BC1EC3DC7500869084 /* addEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEventViewController.m; sourceTree = "<group>"; };
+		313C27BE1EC4AFF900869084 /* topView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topView.h; sourceTree = "<group>"; };
+		313C27BF1EC4AFF900869084 /* topView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topView.m; sourceTree = "<group>"; };
+		313C27C11EC4B1B100869084 /* topView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topView.xib; sourceTree = "<group>"; };
 		31B02CC11EBF067A0057E7E2 /* displayTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = displayTopViewController.h; sourceTree = "<group>"; };
 		31B02CC21EBF067A0057E7E2 /* displayTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = displayTopViewController.m; sourceTree = "<group>"; };
 		31D0F81B1E12893700C5E515 /* MyCalender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalender.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +123,11 @@
 				31D0F81E1E12893700C5E515 /* Supporting Files */,
 				31B02CC11EBF067A0057E7E2 /* displayTopViewController.h */,
 				31B02CC21EBF067A0057E7E2 /* displayTopViewController.m */,
+				313C27BB1EC3DC7500869084 /* addEventViewController.h */,
+				313C27BC1EC3DC7500869084 /* addEventViewController.m */,
+				313C27BE1EC4AFF900869084 /* topView.h */,
+				313C27BF1EC4AFF900869084 /* topView.m */,
+				313C27C11EC4B1B100869084 /* topView.xib */,
 			);
 			path = MyCalender;
 			sourceTree = "<group>";
@@ -254,6 +267,7 @@
 			files = (
 				31D0F82E1E12893700C5E515 /* LaunchScreen.storyboard in Resources */,
 				31D0F82B1E12893700C5E515 /* Assets.xcassets in Resources */,
+				313C27C21EC4B1B100869084 /* topView.xib in Resources */,
 				31D0F8291E12893700C5E515 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,7 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */,
 				31D0F8261E12893700C5E515 /* ViewController.m in Sources */,
+				313C27C01EC4AFF900869084 /* topView.m in Sources */,
 				31B02CC31EBF067A0057E7E2 /* displayTopViewController.m in Sources */,
 				31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */,
 				31D0F8201E12893700C5E515 /* main.m in Sources */,

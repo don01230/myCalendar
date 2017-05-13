@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "addEventViewController.h"
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *lbThisMonth;
@@ -31,9 +31,12 @@ int mbYcoord=0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
     [self myCalView];
     [self display12Month];
     heightConstraint.constant=heightOfMonthBoard;
+
+    self.navigationItem.title=[NSString stringWithFormat:@"%d",thisYear];
 }
 /*- (IBAction)btnPrevious:(id)sender {
     thisMonth--;
@@ -180,10 +183,18 @@ int mbYcoord=0;
     [monthBoard addSubview:label];
     return label;
 }
+-(void)btnClick{
+    UIStoryboard *main =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *addEvent = [main instantiateViewControllerWithIdentifier:@"addEventViewController"];
+    [self presentViewController:addEvent animated:YES completion:nil];
+    
+}
 -(UIButton*)createRoundedButton:(NSString*)color :(UIView*)monthBoard{
     UIButton *label=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [label setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [label addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    
     //[label setNeedsLayout];
     //[label layoutIfNeeded];
     //NSLog(@"label width:%f",label.frame.size.width);

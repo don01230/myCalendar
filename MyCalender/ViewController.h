@@ -12,6 +12,7 @@
 
     __weak IBOutlet UIView *subView;
     __weak IBOutlet NSLayoutConstraint *heightConstraint;
+    __weak IBOutlet UINavigationItem *navigationItem;
 }
 
 
