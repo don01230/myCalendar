@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31003FF51EC8CE9800DE21C8 /* myTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31003FF41EC8CE9800DE21C8 /* myTableViewCell.m */; };
 		313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BC1EC3DC7500869084 /* addEventViewController.m */; };
 		313C27C01EC4AFF900869084 /* topView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BF1EC4AFF900869084 /* topView.m */; };
 		313C27C21EC4B1B100869084 /* topView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313C27C11EC4B1B100869084 /* topView.xib */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31003FF31EC8CE9800DE21C8 /* myTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTableViewCell.h; sourceTree = "<group>"; };
+		31003FF41EC8CE9800DE21C8 /* myTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTableViewCell.m; sourceTree = "<group>"; };
 		313C27BB1EC3DC7500869084 /* addEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEventViewController.h; sourceTree = "<group>"; };
 		313C27BC1EC3DC7500869084 /* addEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEventViewController.m; sourceTree = "<group>"; };
 		313C27BE1EC4AFF900869084 /* topView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topView.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				313C27BE1EC4AFF900869084 /* topView.h */,
 				313C27BF1EC4AFF900869084 /* topView.m */,
 				313C27C11EC4B1B100869084 /* topView.xib */,
+				31003FF31EC8CE9800DE21C8 /* myTableViewCell.h */,
+				31003FF41EC8CE9800DE21C8 /* myTableViewCell.m */,
 			);
 			path = MyCalender;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 				313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */,
 				31D0F8261E12893700C5E515 /* ViewController.m in Sources */,
 				313C27C01EC4AFF900869084 /* topView.m in Sources */,
+				31003FF51EC8CE9800DE21C8 /* myTableViewCell.m in Sources */,
 				31B02CC31EBF067A0057E7E2 /* displayTopViewController.m in Sources */,
 				31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */,
 				31D0F8201E12893700C5E515 /* main.m in Sources */,
