@@ -187,6 +187,8 @@ int mbYcoord=0;
     UIStoryboard *main =[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *addEvent = [main instantiateViewControllerWithIdentifier:@"addEventViewController"];
     [self presentViewController:addEvent animated:YES completion:nil];
+    //[[self navigationController] pushViewController:addEvent animated:YES];
+    //[[self navigationController] setNavigationBarHidden:NO animated:YES];
     
 }
 -(UIButton*)createRoundedButton:(NSString*)color :(UIView*)monthBoard{

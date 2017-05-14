@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface addEventViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnCancel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnAdd;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end

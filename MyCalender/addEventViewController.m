@@ -9,7 +9,10 @@
 #import "addEventViewController.h"
 #import "topView.h"
 //#import "topView.m"
-@interface addEventViewController ()
+@interface addEventViewController ()<UITableViewDataSource, UITableViewDelegate>{
+    NSArray *array1,*array2,*array3,*array4,*array5;
+    NSMutableArray *mutableArray;
+}
 
 @end
 
@@ -18,18 +21,85 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //topView *weekRow=[[topView alloc] init];
-    //self.navigationItem.titleView=weekRow;
-    //UISearchBar *searchBar=[[UISearchBar alloc]init];
-    //searchBar.showsCancelButton=false;
-    //searchBar.placeholder=@"Enter your search here!";
-    //searchBar.delegate=self;
+    _btnCancel.action=@selector(closeView);
+    [self arraySetUp];
+}
+
+-(void)arraySetUp{
+    array1=[NSArray arrayWithObjects: @"",@"Location",nil];
+    array2=[NSArray arrayWithObjects: @"All-day",@"Starts",@"Ends",@"Repeat",@"Travel Time",nil];
+    array3=[NSArray arrayWithObjects: @"Calendar",@"Invitees",nil];
+    array4=[NSArray arrayWithObjects: @"Alert",@"Show As",nil];
+    array5=[NSArray arrayWithObjects: @"URL",@"Notes",nil];
+    //mutableArray=[[NSMutableArray alloc]initWithObjects:array1,array2,array3,array4,array5, nil];
+}
+
+#pragma mark - UITableView DataSource Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [mutableArray count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [[mutableArray objectAtIndex:section] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //self.navigationItem.titleView=searchBar;
+    static NSString *cellId=@"cell";
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
     
-    //UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-32, self.view.frame.size.height)];
-    //titleLabel.text=@"Home";
-    //self.navigationItem.titleView=titleLabel;
+    cell.textLabel.text=[[mutableArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+
+    /*if([indexPath section]==0){
+        UITextField *textField=[[UITextField alloc] init];
+        [textField setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [cell addSubview:textField];
+        
+        NSDictionary *views=NSDictionaryOfVariableBindings(textField);
+        
+        NSArray *horizontalConstraints1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[textField]-0-|" options:0 metrics:nil views:views];
+        [cell addConstraints:horizontalConstraints1];
+        
+        NSArray *heightConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[textField]-0-|" options:0 metrics:nil views:views];
+        [cell addConstraints:heightConstraints1];
+        
+        textField.adjustsFontSizeToFitWidth=YES;
+        textField.textColor=[UIColor blackColor];
+        if([indexPath row]==0){
+            textField.placeholder=@"Title";
+        }else{
+            textField.placeholder=@"Location";
+        }
+        textField.backgroundColor=[UIColor whiteColor];
+        
+        [cell addSubview:textField];
+        textField.delegate=self;
+    }*/
+
+    return cell;
+}
+
+/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return @" ";
+            break;
+            
+        case 1:
+            return @" ";
+            break;
+            
+        default:
+            return @" ";
+            break;
+    }
+}*/
+
+- (void)closeView{
+    [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
