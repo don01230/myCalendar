@@ -8,11 +8,19 @@
 
 #import "addEventViewController.h"
 #import "topView.h"
-//#import "topView.m"
+#import "myTableViewCell.h"
+#import "UITextField+IndexPath.h"
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
 @interface addEventViewController ()<UITableViewDataSource, UITableViewDelegate>{
-    NSArray *array1,*array2,*array3,*array4,*array5;
+    NSMutableArray *array1,*array2,*array3,*array4,*array5;
     NSMutableArray *mutableArray;
+    
 }
+@property (nonatomic , strong)NSArray *titleArray;
+@property (nonatomic , strong)NSMutableArray *arrayDataSouce;
 
 @end
 
@@ -23,16 +31,35 @@
     // Do any additional setup after loading the view.
     _btnCancel.action=@selector(closeView);
     [self arraySetUp];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldDidChanged:) name:UITextFieldTextDidChangeNotification object:nil];
+}
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)textFieldDidChanged:(NSNotification *)noti{
+
+    UITextField *textField=noti.object;
+    NSIndexPath *indexPath = textField.indexPath;
+    NSLog(@"NSLog:%ld",(long)indexPath.section);
+    NSLog(@"NSLog:%@",textField.text);
+    [[mutableArray objectAtIndex:indexPath.section] replaceObjectAtIndex:indexPath.row withObject:textField.text];
 }
 
 -(void)arraySetUp{
-    array1=[NSArray arrayWithObjects: @"",@"Location",nil];
-    array2=[NSArray arrayWithObjects: @"All-day",@"Starts",@"Ends",@"Repeat",@"Travel Time",nil];
-    array3=[NSArray arrayWithObjects: @"Calendar",@"Invitees",nil];
-    array4=[NSArray arrayWithObjects: @"Alert",@"Show As",nil];
-    array5=[NSArray arrayWithObjects: @"URL",@"Notes",nil];
+    //array1=[[NSMutableArray alloc] initWithObjects: @"Title",@"Location",nil];
+    array1=[[NSMutableArray alloc] initWithObjects: @"",@"",nil];
+    //array2=[[NSMutableArray alloc] initWithObjects: @"All-day",@"Starts",@"Ends",@"Repeat",@"Travel Time",nil];
+    array2=[[NSMutableArray alloc] initWithObjects: @"",@"",@"",@"",@"",nil];
+    //array3=[[NSMutableArray alloc] initWithObjects: @"Calendar",@"Invitees",nil];
+    array3=[[NSMutableArray alloc] initWithObjects: @"",@"",nil];
+    //array4=[[NSMutableArray alloc] initWithObjects: @"Alert",@"Show As",nil];
+    array4=[[NSMutableArray alloc] initWithObjects: @"",@"",nil];
+    //array5=[[NSMutableArray alloc] initWithObjects: @"URL",@"Notes",nil];
+    array5=[[NSMutableArray alloc] initWithObjects: @"",@"",nil];
     mutableArray=[[NSMutableArray alloc]initWithObjects:array1,array2,array3,array4,array5, nil];
+    //mutableArray=[[NSMutableArray alloc]initWithObjects:@"array1",@"array2",@"array3",@"array4",@"array5", nil];
 }
 
 #pragma mark - UITableView DataSource Methods
@@ -43,53 +70,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [[mutableArray objectAtIndex:section] count];
 }
-- (void) initializeMyCells {
-    self.cellArray = [NSMutableArray arrayWithCapacity:5];
-    for ( int i = 0; i < 5; ++i ) {
-        MyCellType *cell = [[MyCellType alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:nil]];
-        [self.cellArray addObject:cell];
-    }
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *cellId=@"cell";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellId];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-    }
-    
-    //cell.textLabel.text=[[mutableArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 
-    UITextField *textField=[[UITextField alloc] init];
-    [textField setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [cell addSubview:textField];
-    
-    NSDictionary *views=NSDictionaryOfVariableBindings(textField);
-    
-    NSArray *horizontalConstraints1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[textField]-0-|" options:0 metrics:nil views:views];
-    [cell addConstraints:horizontalConstraints1];
-    
-    NSArray *heightConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[textField]-5-|" options:0 metrics:nil views:views];
-    [cell addConstraints:heightConstraints1];
-    
-    textField.adjustsFontSizeToFitWidth=YES;
-    textField.textColor=[UIColor blackColor];
-    textField.backgroundColor=[UIColor whiteColor];
-    if([indexPath section]==0){
-        if([indexPath row]==0){
-            textField.placeholder=@"Title";
-        }else{
-            textField.placeholder=@"Location";
-        }
-    }else if([indexPath section]==4){
-        if([indexPath row]==0){
-            textField.placeholder=@"URL";
-        }else{
-            textField.placeholder=@"Notes";
-        }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    static NSString *Id = @"myTableViewCell";
+    myTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Id];
+    if (!cell) {
+        cell = [[myTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id];
     }
-    [cell addSubview:textField];
+
+    [cell setDataString:[mutableArray objectAtIndex:indexPath.section][indexPath.row] andIndexPath:indexPath];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

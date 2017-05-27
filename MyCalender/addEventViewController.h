@@ -13,5 +13,4 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnAdd;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
 @end

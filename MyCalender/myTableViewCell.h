@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface myTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *title;
-
+- (void)setDataString:(NSString *)dataString
+          andIndexPath:(NSIndexPath *)indexPath;
 @end
