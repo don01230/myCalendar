@@ -15,16 +15,14 @@
 @end
 
 NSUInteger numDays;
-int thisYear;
-int thisMonth,unchangedThisMonth;
-int thisDay;
-int weekday;
+NSInteger thisYear;
+NSInteger thisMonth,unchangedThisMonth;
+NSInteger thisDay;
+NSInteger weekday;
 int heightOfMonthBoard=0;
 NSArray * createdAt;
 NSArray * hadSession;
 
-//int yVal=60;
-//int yCount=1;
 int mbYcoord=0;
 @implementation ViewController
 
@@ -36,7 +34,9 @@ int mbYcoord=0;
     [self display12Month];
     heightConstraint.constant=heightOfMonthBoard;
 
-    self.navigationItem.title=[NSString stringWithFormat:@"%d",thisYear];
+    self.navigationItem.title=[NSString stringWithFormat:@"%ld",(long)thisYear];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor redColor]}];
 }
 /*- (IBAction)btnPrevious:(id)sender {
     thisMonth--;
@@ -86,7 +86,7 @@ int mbYcoord=0;
 
 }
 
--(void)updateCalNow{// try to condense this so only one method is used instead of two
+/*-(void)updateCalNow{// try to condense this so only one method is used instead of two
     if(thisMonth>12){
         thisMonth=1;
         thisYear++;
@@ -109,7 +109,7 @@ int mbYcoord=0;
     NSDate *dateFromDateComponentsForDate = [greCalendar dateFromComponents:components];
     
     //_lbThisMonth.text=[dateFormatter stringFromDate:dateFromDateComponentsForDate];
-}
+}*/
 
 -(NSUInteger)getCurrDateInfo:(NSDate *)myDate{
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -121,7 +121,7 @@ int mbYcoord=0;
 
 -(UIView *)createMonthBoard:(int)numMonth :(int)lastBoardHeight{
     UIView *monthBoard=[[UIView alloc]init];
-    [monthBoard setBackgroundColor:[UIColor whiteColor]];
+    [monthBoard setBackgroundColor:[UIColor blueColor]];
     [monthBoard setTranslatesAutoresizingMaskIntoConstraints:NO];
     [subView addSubview:monthBoard];
     
@@ -145,7 +145,7 @@ int mbYcoord=0;
     NSDate * newDate = [calendar dateFromComponents:components];
     NSDateComponents *comps = [gregorian components:NSCalendarUnitWeekday fromDate:newDate];
     weekday=[comps weekday];
-    int tempWeekDay=weekday;
+    int tempWeekDay=(int)weekday;
     numDays=[self getCurrDateInfo:newDate];
     
     //NSLog(@"tempWeekDay:%d",tempWeekDay);
@@ -214,14 +214,14 @@ int mbYcoord=0;
     
     return label;
 }
--(void)createRow:(int)rowNum :(UIView*)monthBoard :(int)day1 :(int)day2 :(int)day3 :(int)day4 :(int)day5 :(int)day6 :(int)day7:(int)month{
-    UIButton *label1=[self createRoundedButton:@"white" :monthBoard];
-    UIButton *label2=[self createRoundedButton:@"white" :monthBoard];
-    UIButton *label3=[self createRoundedButton:@"white" :monthBoard];
-    UIButton *label4=[self createRoundedButton:@"white" :monthBoard];
-    UIButton *label5=[self createRoundedButton:@"white" :monthBoard];
-    UIButton *label6=[self createRoundedButton:@"white" :monthBoard];
-    UIButton *label7=[self createRoundedButton:@"white" :monthBoard];
+-(void)createRow:(int)rowNum :(UIView*)monthBoard :(int)day1 :(int)day2 :(int)day3 :(int)day4 :(int)day5 :(int)day6 :(int)day7 :(int)month{
+    UIButton *label1=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label2=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label3=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label4=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label5=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label6=[self createRoundedButton:@"green" :monthBoard];
+    UIButton *label7=[self createRoundedButton:@"green" :monthBoard];
 
     if(day1!=0)
         [label1 setTitle:[NSString stringWithFormat:@"%d",day1] forState:UIControlStateNormal];
@@ -274,11 +274,11 @@ int mbYcoord=0;
     
     NSDictionary *views=NSDictionaryOfVariableBindings(label1,label2,label3,label4,label5,label6,label7);
     
-    NSArray *horizontalConstraints1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[label1]-0-[label2]-0-[label3]-0-[label4]-0-[label5]-0-[label6]-0-[label7]-0-|" options:0 metrics:nil views:views];
+    NSArray *horizontalConstraints1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[label1]-10-[label2]-10-[label3]-10-[label4]-10-[label5]-10-[label6]-10-[label7]-10-|" options:0 metrics:nil views:views];
     [monthBoard addConstraints:horizontalConstraints1];
     
     for(int i=1;i<7;i++){
-        NSMutableString *labelMonth=@"";
+        NSMutableString *labelMonth=[[NSMutableString alloc]init];
         NSString *newString=[labelMonth stringByAppendingFormat:@"[label%d(==label%d)]",i,i+1];
         //NSLog(@"%@", newString);
         NSArray *equalWidthConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:newString options:0 metrics:nil views:views];
@@ -288,7 +288,7 @@ int mbYcoord=0;
     [label1 layoutIfNeeded];
     //NSLog(@"label width:%f",label1.frame.size.width);
     for(int i=1;i<=7;i++){
-        NSMutableString *labelMonth=@"";
+        NSMutableString *labelMonth=[[NSMutableString alloc]init];
         NSString *newString;
         if (rowNum==1)
             newString=[labelMonth stringByAppendingFormat:@"V:|-40-[label%d(%f)]|",i,label1.frame.size.width];
@@ -335,20 +335,20 @@ int mbYcoord=0;
     
     numDays=[self getCurrDateInfo:newDate];
     
-    int newWeekDay=weekday-1;//make weekday zero based
+    //int newWeekDay=(int)weekday-1;//make weekday zero based
     
     //NSLog(@"Day week %d",weekday);
     
     //coordinates for displaying the buttons
-    int yVal=60;
-    int yCount=1;
-    int displayMonthXCoord=(newWeekDay*45)+7;
+    //int yVal=60;
+    //int yCount=1;
+    //int displayMonthXCoord=(newWeekDay*45)+7;
     
     //UIView *monthBoard=[self createMonthBoard];
     
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"LLL"];
-    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
     NSDate *dateFromDateComponentsForDate = [greCalendar dateFromComponents:components];
     
@@ -380,7 +380,7 @@ int mbYcoord=0;
     [monthBoard addConstraints:horizontalConstraints1];
     
     for(int i=1;i<7;i++){
-        NSMutableString *labelMonth=@"";
+        NSMutableString *labelMonth=[[NSMutableString alloc]init];
         NSString *newString=[labelMonth stringByAppendingFormat:@"[label%d(==label%d)]",i,i+1];
         //NSLog(@"%@", newString);
         NSArray *equalWidthConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:newString options:0 metrics:nil views:views];
@@ -389,7 +389,7 @@ int mbYcoord=0;
     }
     
     for(int i=1;i<=7;i++){
-        NSMutableString *labelMonth=@"";
+        NSMutableString *labelMonth=[[NSMutableString alloc]init];
         NSString *newString=[labelMonth stringByAppendingFormat:@"V:|[label%d(39)]|",i];
         //NSLog(@"%@", newString);
         NSArray *heightConstraints1 = [NSLayoutConstraint constraintsWithVisualFormat:newString options:0 metrics:nil views:views];
@@ -403,7 +403,7 @@ int mbYcoord=0;
     heightOfMonthBoard=heightOfMonthBoard+monthBoard.frame.size.height;
     //NSLog(@"heightOfMonthBoard:%d",heightOfMonthBoard);
     [self createFirstRow:monthBoard];
-    int tempWeekDay=weekday;
+    int tempWeekDay=(int)weekday;
     int day1=0,day2=0,day3=0,day4=0,day5=0,day6=0,day7=0;
     int rowNum=1;
     for (int i=1; i<=numDays; i++) {
@@ -422,7 +422,7 @@ int mbYcoord=0;
         if(tempWeekDay==7){
             day7=i;
             //NSLog(@"rowNum:%d",rowNum);
-            [self createRow:rowNum :monthBoard :day1 :day2 :day3 :day4 :day5 :day6 :day7 :unchangedThisMonth];
+            [self createRow:rowNum :monthBoard :day1 :day2 :day3 :day4 :day5 :day6 :day7 :(int)unchangedThisMonth];
             day1=0;
             day2=0;
             day3=0;
@@ -436,7 +436,7 @@ int mbYcoord=0;
             tempWeekDay++;
     }
     if(day1!=0)
-        [self createRow:rowNum :monthBoard :day1 :day2 :day3 :day4 :day5 :day6 :day7 :unchangedThisMonth];
+        [self createRow:rowNum :monthBoard :day1 :day2 :day3 :day4 :day5 :day6 :day7 :(int)unchangedThisMonth];
 
     /*for (int startD=1; startD<=numDays; startD++) {
         

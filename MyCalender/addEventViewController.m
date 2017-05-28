@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     _btnCancel.action=@selector(closeView);
     [self arraySetUp];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldDidChanged:) name:UITextFieldTextDidChangeNotification object:nil];
@@ -42,8 +43,7 @@
 
     UITextField *textField=noti.object;
     NSIndexPath *indexPath = textField.indexPath;
-    NSLog(@"NSLog:%ld",(long)indexPath.section);
-    NSLog(@"NSLog:%@",textField.text);
+
     [[mutableArray objectAtIndex:indexPath.section] replaceObjectAtIndex:indexPath.row withObject:textField.text];
 }
 
@@ -80,6 +80,7 @@
     }
 
     [cell setDataString:[mutableArray objectAtIndex:indexPath.section][indexPath.row] andIndexPath:indexPath];
+    
     return cell;
 }
 
@@ -87,21 +88,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return @" ";
+            return @"1";
             break;
             
         case 1:
-            return @" ";
+            return @"2";
             break;
             
         default:
-            return @" ";
+            return @"3";
             break;
     }
-}
+}*/
 
 - (void)closeView{
     [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
