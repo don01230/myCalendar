@@ -121,7 +121,7 @@ int mbYcoord=0;
 
 -(UIView *)createMonthBoard:(int)numMonth :(int)lastBoardHeight{
     UIView *monthBoard=[[UIView alloc]init];
-    [monthBoard setBackgroundColor:[UIColor blueColor]];
+//    [monthBoard setBackgroundColor:[UIColor blueColor]];
     [monthBoard setTranslatesAutoresizingMaskIntoConstraints:NO];
     [subView addSubview:monthBoard];
     
@@ -205,10 +205,10 @@ int mbYcoord=0;
     
     if([color isEqualToString:@"white"])
         [label setBackgroundColor:[UIColor whiteColor]];
-    if([color isEqualToString:@"green"])
-        [label setBackgroundColor:[UIColor greenColor]];
-    if([color isEqualToString:@"blue"])
-        [label setBackgroundColor:[UIColor blueColor]];
+//    if([color isEqualToString:@"green"])
+//        [label setBackgroundColor:[UIColor greenColor]];
+//    if([color isEqualToString:@"blue"])
+//        [label setBackgroundColor:[UIColor blueColor]];
 
     [monthBoard addSubview:label];
     
