@@ -11,6 +11,8 @@
 		313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BC1EC3DC7500869084 /* addEventViewController.m */; };
 		313C27C01EC4AFF900869084 /* topView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BF1EC4AFF900869084 /* topView.m */; };
 		313C27C21EC4B1B100869084 /* topView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313C27C11EC4B1B100869084 /* topView.xib */; };
+		31735DB720AC758300A66F36 /* yearTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31735DB620AC758300A66F36 /* yearTableViewController.m */; };
+		31735DBA20AC77DA00A66F36 /* yearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31735DB920AC77DA00A66F36 /* yearTableViewCell.m */; };
 		31CD51341ED9710A00E920E0 /* UITextField+IndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CD51331ED9710A00E920E0 /* UITextField+IndexPath.m */; };
 		31D0F8201E12893700C5E515 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F81F1E12893700C5E515 /* main.m */; };
 		31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F8221E12893700C5E515 /* AppDelegate.m */; };
@@ -47,6 +49,10 @@
 		313C27BE1EC4AFF900869084 /* topView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topView.h; sourceTree = "<group>"; };
 		313C27BF1EC4AFF900869084 /* topView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topView.m; sourceTree = "<group>"; };
 		313C27C11EC4B1B100869084 /* topView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topView.xib; sourceTree = "<group>"; };
+		31735DB520AC758300A66F36 /* yearTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yearTableViewController.h; sourceTree = "<group>"; };
+		31735DB620AC758300A66F36 /* yearTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearTableViewController.m; sourceTree = "<group>"; };
+		31735DB820AC77DA00A66F36 /* yearTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yearTableViewCell.h; sourceTree = "<group>"; };
+		31735DB920AC77DA00A66F36 /* yearTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearTableViewCell.m; sourceTree = "<group>"; };
 		31CD51321ED9710A00E920E0 /* UITextField+IndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+IndexPath.h"; sourceTree = "<group>"; };
 		31CD51331ED9710A00E920E0 /* UITextField+IndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IndexPath.m"; sourceTree = "<group>"; };
 		31D0F81B1E12893700C5E515 /* MyCalender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalender.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		311AF33D20AE84D900E41208 /* yearTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				31735DB820AC77DA00A66F36 /* yearTableViewCell.h */,
+				31735DB920AC77DA00A66F36 /* yearTableViewCell.m */,
+			);
+			name = yearTableViewCell;
+			sourceTree = "<group>";
+		};
 		31D0F8121E12893700C5E515 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +130,7 @@
 		31D0F81D1E12893700C5E515 /* MyCalender */ = {
 			isa = PBXGroup;
 			children = (
+				311AF33D20AE84D900E41208 /* yearTableViewCell */,
 				31D0F8211E12893700C5E515 /* AppDelegate.h */,
 				31D0F8221E12893700C5E515 /* AppDelegate.m */,
 				31D0F8241E12893700C5E515 /* ViewController.h */,
@@ -133,6 +149,8 @@
 				31003FF41EC8CE9800DE21C8 /* myTableViewCell.m */,
 				31CD51321ED9710A00E920E0 /* UITextField+IndexPath.h */,
 				31CD51331ED9710A00E920E0 /* UITextField+IndexPath.m */,
+				31735DB520AC758300A66F36 /* yearTableViewController.h */,
+				31735DB620AC758300A66F36 /* yearTableViewController.m */,
 			);
 			path = MyCalender;
 			sourceTree = "<group>";
@@ -302,8 +320,10 @@
 				31CD51341ED9710A00E920E0 /* UITextField+IndexPath.m in Sources */,
 				31D0F8261E12893700C5E515 /* ViewController.m in Sources */,
 				313C27C01EC4AFF900869084 /* topView.m in Sources */,
+				31735DB720AC758300A66F36 /* yearTableViewController.m in Sources */,
 				31003FF51EC8CE9800DE21C8 /* myTableViewCell.m in Sources */,
 				31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */,
+				31735DBA20AC77DA00A66F36 /* yearTableViewCell.m in Sources */,
 				31D0F8201E12893700C5E515 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

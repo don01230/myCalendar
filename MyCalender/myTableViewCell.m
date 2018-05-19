@@ -41,7 +41,7 @@
 }
 
 - (void)setDataString:(NSString *)dataString andIndexPath:(NSIndexPath *)indexPath{
-    // 核心代码
+
     self.textField.indexPath = indexPath;
     self.textField.text = dataString;
     
