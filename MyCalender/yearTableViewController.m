@@ -15,6 +15,7 @@
 @implementation yearTableViewController
 {
     NSArray *devices;
+    NSArray *arrayMonth;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,6 +27,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     devices=@[@"iPhone",@"iPad",@"iPod",@"iMac",@"iWatch",@"iTV"];
+    arrayMonth=@[@"Jan",@"Feb",@"Mar",@"Apr",@"May",@"Jun",@"July",@"Aug",@"Sep",@"Oct",@"Nov",@"Dec"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,7 +164,152 @@
     [cell.yearContentView addConstraints:heightConstraint_8];
     [cell.yearContentView addConstraints:heightConstraint_9];
     
-//    cell.selectionStyle=UITableViewCellSelectionStyleGray;
+//    UILabel *lbJan=[[UILabel alloc] init];
+//    UILabel *lbFeb=[[UILabel alloc] init];
+//    UILabel *lbMar=[[UILabel alloc] init];
+//    UILabel *lbApr=[[UILabel alloc] init];
+//    UILabel *lbMay=[[UILabel alloc] init];
+//    UILabel *lbJun=[[UILabel alloc] init];
+//    UILabel *lbJul=[[UILabel alloc] init];
+//    UILabel *lbAug=[[UILabel alloc] init];
+//    UILabel *lbSep=[[UILabel alloc] init];
+//    UILabel *lbOct=[[UILabel alloc] init];
+//    UILabel *lbNov=[[UILabel alloc] init];
+//    UILabel *lbDec=[[UILabel alloc] init];
+//
+//    [lbJan setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbFeb setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbMar setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbApr setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbMay setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbJun setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbJul setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbAug setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbSep setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbOct setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbNov setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [lbDec setTranslatesAutoresizingMaskIntoConstraints:NO];
+//
+//    [lbJan setText:@"Jan"];
+//    [lbFeb setText:@"Feb"];
+//    [lbMar setText:@"Mar"];
+    for(int i=0;i<arrayMonth.count;i++){
+        
+        UILabel *lbMonth=[[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+        [lbMonth setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [lbMonth setText:arrayMonth[i]];
+        lbMonth.font=[UIFont boldSystemFontOfSize:25.0f];
+
+        if(i==0){
+            [january addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [january addConstraints:horizontalContraint];
+            [january addConstraints:verticalContraint];
+            
+        }else if(i==1){
+            [february addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [february addConstraints:horizontalContraint];
+            [february addConstraints:verticalContraint];
+            
+        }else if(i==2){
+            [march addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [march addConstraints:horizontalContraint];
+            [march addConstraints:verticalContraint];
+            
+        }else if(i==3){
+            [april addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [april addConstraints:horizontalContraint];
+            [april addConstraints:verticalContraint];
+            
+        }else if(i==4){
+            [may addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [may addConstraints:horizontalContraint];
+            [may addConstraints:verticalContraint];
+            
+        }else if(i==5){
+            [june addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [june addConstraints:horizontalContraint];
+            [june addConstraints:verticalContraint];
+            
+        }else if(i==6){
+            [july addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [july addConstraints:horizontalContraint];
+            [july addConstraints:verticalContraint];
+            
+        }else if(i==7){
+            [august addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [august addConstraints:horizontalContraint];
+            [august addConstraints:verticalContraint];
+            
+        }else if(i==8){
+            [september addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [september addConstraints:horizontalContraint];
+            [september addConstraints:verticalContraint];
+            
+        }else if(i==9){
+            [october addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [october addConstraints:horizontalContraint];
+            [october addConstraints:verticalContraint];
+            
+        }else if (i==10){
+            [november addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [november addConstraints:horizontalContraint];
+            [november addConstraints:verticalContraint];
+            
+        }else if(i==11){
+            [december addSubview:lbMonth];
+            
+            NSDictionary *views=NSDictionaryOfVariableBindings(lbMonth);
+            NSArray *horizontalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[lbMonth]-0-|" options:0 metrics:nil views:views];
+            NSArray *verticalContraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbMonth]-110-|" options:0 metrics:nil views:views];
+            [december addConstraints:horizontalContraint];
+            [december addConstraints:verticalContraint];
+        }
+    }
+
     
     return cell;
 }

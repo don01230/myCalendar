@@ -234,12 +234,12 @@
         <scene sceneID="6Op-YO-hRe">
             <objects>
                 <tableViewController storyboardIdentifier="yearTableViewController" id="EuP-58-tgb" userLabel="yearTableViewController" customClass="yearTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="660" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="u7H-3U-uqK" userLabel="yearTableView">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="630" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="u7H-3U-uqK" userLabel="yearTableView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="yearTableViewCell" rowHeight="150" id="TOi-w9-WFr" customClass="yearTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="yearTableViewCell" rowHeight="150" id="TOi-w9-WFr" customClass="yearTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TOi-w9-WFr" id="9MS-wY-R1r">
@@ -281,6 +281,19 @@
                             <outlet property="delegate" destination="EuP-58-tgb" id="tTb-bH-LXK"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Today" id="yBd-b8-ngI" userLabel="today">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="34R-vW-Xig"/>
+                        <barButtonItem title="Calendars" id="jmW-QP-rVE" userLabel="calendar">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="hxf-66-Fkm"/>
+                        <barButtonItem title="Inbox" id="7jT-DB-Yws" userLabel="inbox">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="XUM-61-DUP">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="tRd-Fp-PhC">
@@ -291,6 +304,7 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="yearTableView" destination="u7H-3U-uqK" id="zeW-Nz-2ZG"/>
                     </connections>
@@ -302,11 +316,16 @@
         <!--yearNavigationController-->
         <scene sceneID="vwa-Cq-Yvc">
             <objects>
-                <navigationController storyboardIdentifier="yearNavigationController" id="JEt-t4-Tmc" userLabel="yearNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="yearNavigationController" toolbarHidden="NO" id="JEt-t4-Tmc" userLabel="yearNavigationController" sceneMemberID="viewController">
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nXY-8k-y21">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HEc-HQ-psk">
+                        <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="EuP-58-tgb" kind="relationship" relationship="rootViewController" id="dap-dd-mIR"/>
                     </connections>
