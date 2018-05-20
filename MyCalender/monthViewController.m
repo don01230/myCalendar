@@ -1,14 +1,14 @@
 //
-//  ViewController.m
+//  monthViewController.m
 //  MyCalender
 //
 //  Created by LAI KIN WA on 27/12/2016.
 //  Copyright © 2016年 LAI KIN WA. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "monthViewController.h"
 #import "addEventViewController.h"
-@interface ViewController ()
+@interface monthViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *lbThisMonth;
 
@@ -24,7 +24,7 @@ NSArray * createdAt;
 NSArray * hadSession;
 
 int mbYcoord=0;
-@implementation ViewController
+@implementation monthViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

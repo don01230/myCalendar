@@ -315,7 +315,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    ViewController *viewController = (ViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"monthViewController"];
+//    [self.navigationController pushViewController:viewController animated:YES];
 }
 /*
 // Override to support conditional editing of the table view.

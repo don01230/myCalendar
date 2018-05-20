@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  monthViewController.h
 //  MyCalender
 //
 //  Created by LAI KIN WA on 27/12/2016.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController{
+@interface monthViewController : UIViewController{
 
     __weak IBOutlet UIView *subView;
     __weak IBOutlet NSLayoutConstraint *heightConstraint;
