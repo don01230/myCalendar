@@ -515,6 +515,8 @@ int mbYcoord=0;
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btn.backgroundColor=[UIColor redColor];
     [self.view addSubview:btn];
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
