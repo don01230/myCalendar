@@ -33,6 +33,8 @@
     NSLog(@"mainScreen:%f",[[UIScreen mainScreen] bounds].size.height);
     NSLog(@"UIScreen:%f",UIApplication.sharedApplication.statusBarFrame.size.height+self.navigationController.navigationBar.frame.size.height + self.navigationController.toolbar.frame.size.height);
     self.yearTableView.rowHeight=[[UIScreen mainScreen] bounds].size.height-(UIApplication.sharedApplication.statusBarFrame.size.height+self.navigationController.navigationBar.frame.size.height + self.navigationController.toolbar.frame.size.height);
+    UINib *cellNib=[UINib nibWithNibName:@"yearTableViewCell" bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"yearTableViewCell"];
     
 }
 
@@ -55,133 +57,135 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    yearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yearTableViewCell"];
+    yearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yearTableViewCell" forIndexPath:indexPath];
+    
+//    NSLog(@"indexPath:%@",indexPath);
 //    if(cell==nil){
 //        cell=[[yearTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yearTableViewCell"];
 //    }
     // Configure the cell...
-    [cell.lbYear setText:@"2018"];
-    january=[[UIView alloc] init];
-    UIView *february=[[UIView alloc] init];
-    UIView *march=[[UIView alloc] init];
-    UIView *april=[[UIView alloc] init];
-    UIView *may=[[UIView alloc] init];
-    UIView *june=[[UIView alloc] init];
-    UIView *july=[[UIView alloc] init];
-    UIView *august=[[UIView alloc] init];
-    UIView *september=[[UIView alloc] init];
-    UIView *october=[[UIView alloc] init];
-    UIView *november=[[UIView alloc] init];
-    UIView *december=[[UIView alloc] init];
-
-    [january setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [february setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [march setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [april setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [may setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [june setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [july setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [august setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [september setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [october setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [november setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [december setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [cell.lbYear setText:@"2018"];
+//    january=[[UIView alloc] init];
+//    UIView *february=[[UIView alloc] init];
+//    UIView *march=[[UIView alloc] init];
+//    UIView *april=[[UIView alloc] init];
+//    UIView *may=[[UIView alloc] init];
+//    UIView *june=[[UIView alloc] init];
+//    UIView *july=[[UIView alloc] init];
+//    UIView *august=[[UIView alloc] init];
+//    UIView *september=[[UIView alloc] init];
+//    UIView *october=[[UIView alloc] init];
+//    UIView *november=[[UIView alloc] init];
+//    UIView *december=[[UIView alloc] init];
+//
+//    [january setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [february setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [march setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [april setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [may setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [june setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [july setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [august setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [september setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [october setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [november setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [december setTranslatesAutoresizingMaskIntoConstraints:NO];
+//
+//    [january setBackgroundColor:[UIColor redColor]];
+//    [february setBackgroundColor:[UIColor blueColor]];
+//    [march setBackgroundColor:[UIColor greenColor]];
+//    [april setBackgroundColor:[UIColor blueColor]];
+//    [may setBackgroundColor:[UIColor greenColor]];
+//    [june setBackgroundColor:[UIColor redColor]];
+//    [july setBackgroundColor:[UIColor greenColor]];
+//    [august setBackgroundColor:[UIColor redColor]];
+//    [september setBackgroundColor:[UIColor blueColor]];
+//    [october setBackgroundColor:[UIColor redColor]];
+//    [november setBackgroundColor:[UIColor blueColor]];
+//    [december setBackgroundColor:[UIColor greenColor]];
+//
+//    [cell.yearContentView addSubview:january];
+//    [cell.yearContentView addSubview:february];
+//    [cell.yearContentView addSubview:march];
+//    [cell.yearContentView addSubview:april];
+//    [cell.yearContentView addSubview:may];
+//    [cell.yearContentView addSubview:june];
+//    [cell.yearContentView addSubview:july];
+//    [cell.yearContentView addSubview:august];
+//    [cell.yearContentView addSubview:september];
+//    [cell.yearContentView addSubview:october];
+//    [cell.yearContentView addSubview:november];
+//    [cell.yearContentView addSubview:december];
+//
+//    NSDictionary *views = NSDictionaryOfVariableBindings(january,february,march,april,may,june,july,august,september,october,november,december);
+//
+//
+//    NSArray *horizontalConstraint_1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[january]-0-[february]-0-[march]-0-|" options:0 metrics:nil views:views];
+//    NSArray *horizontalConstraint_2 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[april]-0-[may]-0-[june]-0-|" options:0 metrics:nil views:views];
+//    NSArray *horizontalConstraint_3 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[july]-0-[august]-0-[september]-0-|" options:0 metrics:nil views:views];
+//    NSArray *horizontalConstraint_4 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[october]-0-[november]-0-[december]-0-|" options:0 metrics:nil views:views];
+//
+//
+//    NSArray *widthConstraint_1=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[january(==february)]" options:0 metrics:nil views:views];
+//    NSArray *widthConstraint_2=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[february(==march)]" options:0 metrics:nil views:views];
+//    NSArray *widthConstraint_3=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[april(==may)]" options:0 metrics:nil views:views];
+//    NSArray *widthConstraint_4=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[may(==june)]" options:0 metrics:nil views:views];
+//    NSArray *widthConstraint_5=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[july(==august)]" options:0 metrics:nil views:views];
+//    NSArray *widthConstraint_6=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[august(==september)]" options:0 metrics:nil views:views];
+//    NSArray *widthConstraint_7=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[october(==november)]" options:0 metrics:nil views:views];
+//    NSArray *widthConstraint_8=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[november(==december)]" options:0 metrics:nil views:views];
+//
+//    NSArray *verticalConstraint_1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[january]-0-[april]-0-[july]-0-[october]-0-|" options:0 metrics:nil views:views];
+//    NSArray *verticalConstraint_2 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[february]-0-[may]-0-[august]-0-[november]-0-|" options:0 metrics:nil views:views];
+//    NSArray *verticalConstraint_3 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[march]-0-[june]-0-[september]-0-[december]-0-|" options:0 metrics:nil views:views];
+//
+//    NSArray *heightConstraint_1=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[january(==april)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_2=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[april(==july)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_3=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[july(==october)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_4=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[february(==may)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_5=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[may(==august)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_6=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[august(==november)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_7=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[march(==june)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_8=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[june(==september)]" options:0 metrics:nil views:views];
+//    NSArray *heightConstraint_9=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[september(==december)]" options:0 metrics:nil views:views];
     
-    [january setBackgroundColor:[UIColor redColor]];
-    [february setBackgroundColor:[UIColor blueColor]];
-    [march setBackgroundColor:[UIColor greenColor]];
-    [april setBackgroundColor:[UIColor blueColor]];
-    [may setBackgroundColor:[UIColor greenColor]];
-    [june setBackgroundColor:[UIColor redColor]];
-    [july setBackgroundColor:[UIColor greenColor]];
-    [august setBackgroundColor:[UIColor redColor]];
-    [september setBackgroundColor:[UIColor blueColor]];
-    [october setBackgroundColor:[UIColor redColor]];
-    [november setBackgroundColor:[UIColor blueColor]];
-    [december setBackgroundColor:[UIColor greenColor]];
-
-    [cell.yearContentView addSubview:january];
-    [cell.yearContentView addSubview:february];
-    [cell.yearContentView addSubview:march];
-    [cell.yearContentView addSubview:april];
-    [cell.yearContentView addSubview:may];
-    [cell.yearContentView addSubview:june];
-    [cell.yearContentView addSubview:july];
-    [cell.yearContentView addSubview:august];
-    [cell.yearContentView addSubview:september];
-    [cell.yearContentView addSubview:october];
-    [cell.yearContentView addSubview:november];
-    [cell.yearContentView addSubview:december];
+//    [cell.yearContentView addConstraints:horizontalConstraint_1];
+//    [cell.yearContentView addConstraints:horizontalConstraint_2];
+//    [cell.yearContentView addConstraints:horizontalConstraint_3];
+//    [cell.yearContentView addConstraints:horizontalConstraint_4];
+//    [cell.yearContentView addConstraints:verticalConstraint_1];
+//    [cell.yearContentView addConstraints:verticalConstraint_2];
+//    [cell.yearContentView addConstraints:verticalConstraint_3];
+//    [cell.yearContentView addConstraints:widthConstraint_1];
+//    [cell.yearContentView addConstraints:widthConstraint_2];
+//    [cell.yearContentView addConstraints:widthConstraint_3];
+//    [cell.yearContentView addConstraints:widthConstraint_4];
+//    [cell.yearContentView addConstraints:widthConstraint_5];
+//    [cell.yearContentView addConstraints:widthConstraint_6];
+//    [cell.yearContentView addConstraints:widthConstraint_7];
+//    [cell.yearContentView addConstraints:widthConstraint_8];
+//    [cell.yearContentView addConstraints:heightConstraint_1];
+//    [cell.yearContentView addConstraints:heightConstraint_2];
+//    [cell.yearContentView addConstraints:heightConstraint_3];
+//    [cell.yearContentView addConstraints:heightConstraint_4];
+//    [cell.yearContentView addConstraints:heightConstraint_5];
+//    [cell.yearContentView addConstraints:heightConstraint_6];
+//    [cell.yearContentView addConstraints:heightConstraint_7];
+//    [cell.yearContentView addConstraints:heightConstraint_8];
+//    [cell.yearContentView addConstraints:heightConstraint_9];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(january,february,march,april,may,june,july,august,september,october,november,december);
-
-    
-    NSArray *horizontalConstraint_1 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[january]-0-[february]-0-[march]-0-|" options:0 metrics:nil views:views];
-    NSArray *horizontalConstraint_2 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[april]-0-[may]-0-[june]-0-|" options:0 metrics:nil views:views];
-    NSArray *horizontalConstraint_3 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[july]-0-[august]-0-[september]-0-|" options:0 metrics:nil views:views];
-    NSArray *horizontalConstraint_4 =[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[october]-0-[november]-0-[december]-0-|" options:0 metrics:nil views:views];
-
-    
-    NSArray *widthConstraint_1=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[january(==february)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint_2=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[february(==march)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint_3=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[april(==may)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint_4=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[may(==june)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint_5=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[july(==august)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint_6=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[august(==september)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint_7=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[october(==november)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint_8=[NSLayoutConstraint constraintsWithVisualFormat:@"H:[november(==december)]" options:0 metrics:nil views:views];
-    
-    NSArray *verticalConstraint_1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[january]-0-[april]-0-[july]-0-[october]-0-|" options:0 metrics:nil views:views];
-    NSArray *verticalConstraint_2 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[february]-0-[may]-0-[august]-0-[november]-0-|" options:0 metrics:nil views:views];
-    NSArray *verticalConstraint_3 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-55-[march]-0-[june]-0-[september]-0-[december]-0-|" options:0 metrics:nil views:views];
-    
-    NSArray *heightConstraint_1=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[january(==april)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_2=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[april(==july)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_3=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[july(==october)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_4=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[february(==may)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_5=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[may(==august)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_6=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[august(==november)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_7=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[march(==june)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_8=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[june(==september)]" options:0 metrics:nil views:views];
-    NSArray *heightConstraint_9=[NSLayoutConstraint constraintsWithVisualFormat:@"V:[september(==december)]" options:0 metrics:nil views:views];
-    
-    [cell.yearContentView addConstraints:horizontalConstraint_1];
-    [cell.yearContentView addConstraints:horizontalConstraint_2];
-    [cell.yearContentView addConstraints:horizontalConstraint_3];
-    [cell.yearContentView addConstraints:horizontalConstraint_4];
-    [cell.yearContentView addConstraints:verticalConstraint_1];
-    [cell.yearContentView addConstraints:verticalConstraint_2];
-    [cell.yearContentView addConstraints:verticalConstraint_3];
-    [cell.yearContentView addConstraints:widthConstraint_1];
-    [cell.yearContentView addConstraints:widthConstraint_2];
-    [cell.yearContentView addConstraints:widthConstraint_3];
-    [cell.yearContentView addConstraints:widthConstraint_4];
-    [cell.yearContentView addConstraints:widthConstraint_5];
-    [cell.yearContentView addConstraints:widthConstraint_6];
-    [cell.yearContentView addConstraints:widthConstraint_7];
-    [cell.yearContentView addConstraints:widthConstraint_8];
-    [cell.yearContentView addConstraints:heightConstraint_1];
-    [cell.yearContentView addConstraints:heightConstraint_2];
-    [cell.yearContentView addConstraints:heightConstraint_3];
-    [cell.yearContentView addConstraints:heightConstraint_4];
-    [cell.yearContentView addConstraints:heightConstraint_5];
-    [cell.yearContentView addConstraints:heightConstraint_6];
-    [cell.yearContentView addConstraints:heightConstraint_7];
-    [cell.yearContentView addConstraints:heightConstraint_8];
-    [cell.yearContentView addConstraints:heightConstraint_9];
-    
-    [self createMonthBoard:january :arrayMonth[0]];
-    [self createMonthBoard:february :arrayMonth[1]];
-    [self createMonthBoard:march :arrayMonth[2]];
-    [self createMonthBoard:april :arrayMonth[3]];
-    [self createMonthBoard:may :arrayMonth[4]];
-    [self createMonthBoard:june :arrayMonth[5]];
-    [self createMonthBoard:july :arrayMonth[6]];
-    [self createMonthBoard:august :arrayMonth[7]];
-    [self createMonthBoard:september :arrayMonth[8]];
-    [self createMonthBoard:october :arrayMonth[9]];
-    [self createMonthBoard:november :arrayMonth[10]];
-    [self createMonthBoard:december :arrayMonth[11]];
+//    [self createMonthBoard:january :arrayMonth[0]];
+//    [self createMonthBoard:february :arrayMonth[1]];
+//    [self createMonthBoard:march :arrayMonth[2]];
+//    [self createMonthBoard:april :arrayMonth[3]];
+//    [self createMonthBoard:may :arrayMonth[4]];
+//    [self createMonthBoard:june :arrayMonth[5]];
+//    [self createMonthBoard:july :arrayMonth[6]];
+//    [self createMonthBoard:august :arrayMonth[7]];
+//    [self createMonthBoard:september :arrayMonth[8]];
+//    [self createMonthBoard:october :arrayMonth[9]];
+//    [self createMonthBoard:november :arrayMonth[10]];
+//    [self createMonthBoard:december :arrayMonth[11]];
     
     return cell;
 }
@@ -303,6 +307,49 @@
     UILabel *label_40=[[UILabel alloc] init];
     UILabel *label_41=[[UILabel alloc] init];
     UILabel *label_42=[[UILabel alloc] init];
+    
+//    label_1.backgroundColor=monthBoard.backgroundColor;
+//    label_2.backgroundColor=monthBoard.backgroundColor;
+//    label_3.backgroundColor=monthBoard.backgroundColor;
+//    label_4.backgroundColor=monthBoard.backgroundColor;
+//    label_5.backgroundColor=monthBoard.backgroundColor;
+//    label_6.backgroundColor=monthBoard.backgroundColor;
+//    label_7.backgroundColor=monthBoard.backgroundColor;
+//    label_8.backgroundColor=monthBoard.backgroundColor;
+//    label_9.backgroundColor=monthBoard.backgroundColor;
+//    label_10.backgroundColor=monthBoard.backgroundColor;
+//    label_11.backgroundColor=monthBoard.backgroundColor;
+//    label_12.backgroundColor=monthBoard.backgroundColor;
+//    label_13.backgroundColor=monthBoard.backgroundColor;
+//    label_14.backgroundColor=monthBoard.backgroundColor;
+//    label_15.backgroundColor=monthBoard.backgroundColor;
+//    label_16.backgroundColor=monthBoard.backgroundColor;
+//    label_17.backgroundColor=monthBoard.backgroundColor;
+//    label_18.backgroundColor=monthBoard.backgroundColor;
+//    label_19.backgroundColor=monthBoard.backgroundColor;
+//    label_20.backgroundColor=monthBoard.backgroundColor;
+//    label_21.backgroundColor=monthBoard.backgroundColor;
+//    label_22.backgroundColor=monthBoard.backgroundColor;
+//    label_23.backgroundColor=monthBoard.backgroundColor;
+//    label_24.backgroundColor=monthBoard.backgroundColor;
+//    label_25.backgroundColor=monthBoard.backgroundColor;
+//    label_26.backgroundColor=monthBoard.backgroundColor;
+//    label_27.backgroundColor=monthBoard.backgroundColor;
+//    label_28.backgroundColor=monthBoard.backgroundColor;
+//    label_29.backgroundColor=monthBoard.backgroundColor;
+//    label_30.backgroundColor=monthBoard.backgroundColor;
+//    label_31.backgroundColor=monthBoard.backgroundColor;
+//    label_32.backgroundColor=monthBoard.backgroundColor;
+//    label_33.backgroundColor=monthBoard.backgroundColor;
+//    label_34.backgroundColor=monthBoard.backgroundColor;
+//    label_35.backgroundColor=monthBoard.backgroundColor;
+//    label_36.backgroundColor=monthBoard.backgroundColor;
+//    label_37.backgroundColor=monthBoard.backgroundColor;
+//    label_38.backgroundColor=monthBoard.backgroundColor;
+//    label_39.backgroundColor=monthBoard.backgroundColor;
+//    label_40.backgroundColor=monthBoard.backgroundColor;
+//    label_41.backgroundColor=monthBoard.backgroundColor;
+//    label_42.backgroundColor=monthBoard.backgroundColor;
     
     [label_1 setTranslatesAutoresizingMaskIntoConstraints:NO];
     [label_2 setTranslatesAutoresizingMaskIntoConstraints:NO];

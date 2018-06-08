@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1q-dP-CVP" userLabel="weekView">
-                                <rect key="frame" x="0.0" y="64" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5VI-XP-sMv">
                                         <rect key="frame" x="59" y="0.0" width="59.333333333333343" height="30"/>
@@ -107,7 +107,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KtU-vl-dlb">
-                                <rect key="frame" x="0.0" y="94" width="414" height="598"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djh-gl-q5O">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
@@ -239,7 +239,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="yearTableViewCell" rowHeight="150" id="TOi-w9-WFr" customClass="yearTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="no" rowHeight="150" id="TOi-w9-WFr" customClass="yearTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TOi-w9-WFr" id="9MS-wY-R1r">
@@ -270,11 +270,6 @@
                                         <constraint firstItem="orf-8t-8cu" firstAttribute="leading" secondItem="9MS-wY-R1r" secondAttribute="leadingMargin" id="w97-FR-HYL"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="lbYear" destination="orf-8t-8cu" id="b2A-1e-cQw"/>
-                                    <outlet property="yearContentView" destination="9MS-wY-R1r" id="ZD3-Yo-afZ"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="7cA-nk-aRm"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

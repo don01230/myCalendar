@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface yearTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIView *yearContentView;
+@property (weak, nonatomic) IBOutlet UIView *yearTableViewCellContentView;
 @property (weak, nonatomic) IBOutlet UILabel *lbYear;
+
 
 @end

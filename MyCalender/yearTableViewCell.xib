@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="yearTableViewCell" rowHeight="423" id="GJE-y1-7Kv" customClass="yearTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="423"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GJE-y1-7Kv" id="zmK-Kz-QjS">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="422.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jts-xP-QM0" userLabel="lbYear">
+                        <rect key="frame" x="20" y="11" width="362" height="36"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jom-5K-Dat" userLabel="seperator">
+                        <rect key="frame" x="30" y="61" width="342" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="RHn-TN-BOc"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jts-xP-QM0" firstAttribute="leading" secondItem="zmK-Kz-QjS" secondAttribute="leadingMargin" id="9gp-2O-N5g"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jts-xP-QM0" secondAttribute="trailing" id="Jjg-bI-rFz"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jom-5K-Dat" secondAttribute="trailing" constant="10" id="K9L-Du-j2a"/>
+                    <constraint firstItem="jom-5K-Dat" firstAttribute="leading" secondItem="zmK-Kz-QjS" secondAttribute="leadingMargin" constant="10" id="fHk-7d-QFL"/>
+                    <constraint firstItem="jom-5K-Dat" firstAttribute="top" secondItem="zmK-Kz-QjS" secondAttribute="topMargin" constant="50" id="gP2-Qt-jSk"/>
+                    <constraint firstItem="jts-xP-QM0" firstAttribute="top" secondItem="zmK-Kz-QjS" secondAttribute="topMargin" id="nNO-sh-msA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lbYear" destination="jts-xP-QM0" id="8RT-py-TH0"/>
+                <outlet property="yearTableViewCellContentView" destination="zmK-Kz-QjS" id="zTi-7n-ft2"/>
+            </connections>
+            <point key="canvasLocation" x="141" y="-93.5"/>
+        </tableViewCell>
+    </objects>
+</document>
