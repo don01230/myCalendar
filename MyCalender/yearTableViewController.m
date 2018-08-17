@@ -16,8 +16,8 @@
 {
     NSArray *devices;
     NSArray *arrayMonth;
-    double dayLableWidth;
-    UIView *january;
+    int intYear;
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,10 +32,12 @@
     arrayMonth=@[@"Jan",@"Feb",@"Mar",@"Apr",@"May",@"Jun",@"July",@"Aug",@"Sep",@"Oct",@"Nov",@"Dec"];
     NSLog(@"mainScreen:%f",[[UIScreen mainScreen] bounds].size.height);
     NSLog(@"UIScreen:%f",UIApplication.sharedApplication.statusBarFrame.size.height+self.navigationController.navigationBar.frame.size.height + self.navigationController.toolbar.frame.size.height);
+    
     self.yearTableView.rowHeight=[[UIScreen mainScreen] bounds].size.height-(UIApplication.sharedApplication.statusBarFrame.size.height+self.navigationController.navigationBar.frame.size.height + self.navigationController.toolbar.frame.size.height);
     UINib *cellNib=[UINib nibWithNibName:@"yearTableViewCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"yearTableViewCell"];
-    
+    intYear=2018;
+//    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,14 +59,30 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    yearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yearTableViewCell" forIndexPath:indexPath];
+    NSIndexPath *p =indexPath;
+    int row = (int)p.row;
+//    NSLog(@"indexPath:%d",row);
+
+//    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+//    static NSString *CellIdentifier = @"Cell";
     
-//    NSLog(@"indexPath:%@",indexPath);
-//    if(cell==nil){
-//        cell=[[yearTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yearTableViewCell"];
-//    }
+    yearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yearTableViewCell"];
+    
+//    [self.tableView reloadData];
+    if (!cell) {
+        cell = [[yearTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yearTableViewCell"];
+    }
+//    [cell prepareForReuse];
+    
+    cell.lbYear.text=[NSString stringWithFormat:@"%d",2018+row];
+    cell.setYear=2018+row;
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
+    
     // Configure the cell...
-//    [cell.lbYear setText:@"2018"];
+//    [cell.lbYear setText:[NSString stringWithFormat:@"%d",intYear]];
+
 //    january=[[UIView alloc] init];
 //    UIView *february=[[UIView alloc] init];
 //    UIView *march=[[UIView alloc] init];
@@ -191,10 +209,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    ViewController *viewController = (ViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"monthViewController"];
-//    [self.navigationController pushViewController:viewController animated:YES];
+    monthViewController *viewController = (monthViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"monthViewController"];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 /*
 // Override to support conditional editing of the table view.

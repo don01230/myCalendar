@@ -145,6 +145,7 @@ int mbYcoord=0;
     NSDate * newDate = [calendar dateFromComponents:components];
     NSDateComponents *comps = [gregorian components:NSCalendarUnitWeekday fromDate:newDate];
     weekday=[comps weekday];
+    NSLog(@"weekday:%ld",weekday);
     int tempWeekDay=(int)weekday;
     numDays=[self getCurrDateInfo:newDate];
     
@@ -373,6 +374,7 @@ int mbYcoord=0;
         [label6 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
     if(weekday==7)
         [label7 setText:[dateFormatter stringFromDate:dateFromDateComponentsForDate]];
+//    NSLog(@"dateFormatter:%@",dateFormatter);
     
     NSDictionary *views=NSDictionaryOfVariableBindings(label1,label2,label3,label4,label5,label6,label7);
     
