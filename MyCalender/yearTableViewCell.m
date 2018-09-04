@@ -8,6 +8,10 @@
 
 #import "yearTableViewCell.h"
 
+@implementation yearCollectionView
+
+@end
+
 @implementation yearTableViewCell
 {
     int thisYear;
@@ -17,29 +21,44 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if(self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]){
-//        UIView *monthBoard=[[UIView alloc] init];
-//        [self.yearContentView addSubview:monthBoard];
-        NSLog(@"here");
-    }
+    
+    if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) return nil;
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 9, 10);
+    layout.itemSize = CGSizeMake(44, 44);
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.collectionView = [[yearCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.showsHorizontalScrollIndicator = YES;
+    [self.contentView addSubview:self.collectionView];
+    
     return self;
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    self.collectionView.frame = self.contentView.bounds;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    num=0;
-    thisYear = (int)[[[NSCalendar currentCalendar]
-                 components:NSCalendarUnitYear fromDate:[NSDate date]]
-                year];
-    
-    thisMonth=(int)[[[NSCalendar currentCalendar]
-                components:NSCalendarUnitMonth fromDate:[NSDate date]]
-               month];
-
-    thisDay=(int)[[[NSCalendar currentCalendar]
-              components:NSCalendarUnitDay fromDate:[NSDate date]]
-             day];
+//    num=0;
+//    thisYear = (int)[[[NSCalendar currentCalendar]
+//                 components:NSCalendarUnitYear fromDate:[NSDate date]]
+//                year];
+//    
+//    thisMonth=(int)[[[NSCalendar currentCalendar]
+//                components:NSCalendarUnitMonth fromDate:[NSDate date]]
+//               month];
+//
+//    thisDay=(int)[[[NSCalendar currentCalendar]
+//              components:NSCalendarUnitDay fromDate:[NSDate date]]
+//             day];
 //    NSLog(@"thisDay:%d",(int)thisDay);
 //    NSLog(@"thisMonth:%d",(int)thisMonth);
 //    NSLog(@"thisYear:%d",(int)thisYear);
@@ -55,8 +74,8 @@
     double dayWidth=_viewJan.bounds.size.width/7;
     double dayHeight=(_viewJan.bounds.size.height-30)/6;
 //    NSLog(@"dayWidth:%f",dayWidth);
-    
-    
+
+
     [self createMonthBoard:_viewJan :_lbJan :1 :dayWidth :dayHeight];
     [self createMonthBoard:_viewFeb :_lbFeb :2 :dayWidth :dayHeight];
     [self createMonthBoard:_viewMar :_lbMar :3 :dayWidth :dayHeight];
@@ -185,6 +204,16 @@
 //    }
 //    
 //    [self drawRect:CGRectZero];
+}
+
+- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath
+{
+    self.collectionView.dataSource = dataSourceDelegate;
+    self.collectionView.delegate = dataSourceDelegate;
+    self.collectionView.indexPath = indexPath;
+    [self.collectionView setContentOffset:self.collectionView.contentOffset animated:NO];
+    
+    [self.collectionView reloadData];
 }
 
 @end

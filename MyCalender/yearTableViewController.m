@@ -10,6 +10,9 @@
 
 @interface yearTableViewController ()
 
+@property (nonatomic, strong) NSArray *colorArray;
+@property (nonatomic, strong) NSMutableDictionary *contentOffsetDictionary;
+
 @end
 
 @implementation yearTableViewController
@@ -17,8 +20,40 @@
     NSArray *devices;
     NSArray *arrayMonth;
     int intYear;
-
 }
+
+-(void)loadView
+{
+    [super loadView];
+    
+    const NSInteger numberOfTableViewRows = 20;
+    const NSInteger numberOfCollectionViewCells = 150;
+    
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:numberOfTableViewRows];
+    
+    for (NSInteger tableViewRow = 0; tableViewRow < numberOfTableViewRows; tableViewRow++)
+    {
+        NSMutableArray *colorArray = [NSMutableArray arrayWithCapacity:numberOfCollectionViewCells];
+        
+        for (NSInteger collectionViewItem = 0; collectionViewItem < numberOfCollectionViewCells; collectionViewItem++)
+        {
+            
+            CGFloat red = arc4random() % 255;
+            CGFloat green = arc4random() % 255;
+            CGFloat blue = arc4random() % 255;
+            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0f];
+            
+            [colorArray addObject:color];
+        }
+        
+        [mutableArray addObject:colorArray];
+    }
+    
+    self.colorArray = [NSArray arrayWithArray:mutableArray];
+    
+    self.contentOffsetDictionary = [NSMutableDictionary dictionary];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -61,18 +96,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *p =indexPath;
     int row = (int)p.row;
-//    NSLog(@"indexPath:%d",row);
+    
+    yearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"newCell"];
 
-//    NSString *CellIdentifier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-//    static NSString *CellIdentifier = @"Cell";
-    
-    yearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yearTableViewCell"];
-    
-//    [self.tableView reloadData];
     if (!cell) {
-        cell = [[yearTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yearTableViewCell"];
+        cell = [[yearTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newCell"];
     }
-//    [cell prepareForReuse];
     
     cell.lbYear.text=[NSString stringWithFormat:@"%d",2018+row];
     cell.setYear=2018+row;
@@ -208,12 +237,60 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(yearTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setCollectionViewDataSourceDelegate:self indexPath:indexPath];
+    NSInteger index = cell.collectionView.indexPath.row;
+
+    CGFloat horizontalOffset = [self.contentOffsetDictionary[[@(index) stringValue]] floatValue];
+    [cell.collectionView setContentOffset:CGPointMake(horizontalOffset, 0)];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     monthViewController *viewController = (monthViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"monthViewController"];
     [self.navigationController pushViewController:viewController animated:YES];
 }
+
+#pragma mark - UITableViewDelegate Methods
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 66;
+//}
+
+#pragma mark - UICollectionViewDataSource Methods
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    NSArray *collectionViewArray = self.colorArray[[(yearCollectionView *)collectionView indexPath].row];
+    return collectionViewArray.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+    
+    NSArray *collectionViewArray = self.colorArray[[(yearCollectionView *)collectionView indexPath].row];
+    cell.backgroundColor = collectionViewArray[indexPath.item];
+    
+    return cell;
+}
+
+#pragma mark - UIScrollViewDelegate Methods
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (![scrollView isKindOfClass:[UICollectionView class]]) return;
+    
+    CGFloat horizontalOffset = scrollView.contentOffset.x;
+    
+    yearCollectionView *collectionView = (yearCollectionView *)scrollView;
+    NSInteger index = collectionView.indexPath.row;
+    self.contentOffsetDictionary[[@(index) stringValue]] = @(horizontalOffset);
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

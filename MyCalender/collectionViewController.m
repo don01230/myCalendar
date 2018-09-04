@@ -73,7 +73,7 @@ static const CGFloat kCellMargin=5;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return 10;
 }
 
 - (MyCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,7 +112,7 @@ static const CGFloat kCellMargin=5;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     BOOL isPad = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad;
-    CGFloat length = (CGRectGetWidth(self.view.frame) / 2) - (kCellMargin * 2);
+    CGFloat length = (CGRectGetWidth(self.view.frame) / 3) - (kCellMargin * 2);
     if (isPad) {
         // fixed size for iPad in landscape and portrait
         length = 256 - (kCellMargin * 2);
@@ -120,10 +120,10 @@ static const CGFloat kCellMargin=5;
     return CGSizeMake(length, length);
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0, kCellMargin, kCellMargin, kCellMargin);
-}
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(0, 0, 0, 0);
+//}
 
 #pragma mark - UINavigationControllerDelegate Methods
 - (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
@@ -204,7 +204,16 @@ static const CGFloat kCellMargin=5;
     return [supplementaryView convertRect:supplementaryView.bounds toView:relativeView];
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableView = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"yearHeader" forIndexPath:indexPath];
+        reusableView = header;
+    }
 
+    return reusableView;
+}
 
 
 

@@ -10,9 +10,16 @@
 		09F3812DF06B889B323F29E3 /* Pods_MyCalenderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC63D55B7BC8FF04B85B83E4 /* Pods_MyCalenderUITests.framework */; };
 		31003FF51EC8CE9800DE21C8 /* myTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31003FF41EC8CE9800DE21C8 /* myTableViewCell.m */; };
 		311AF34520CA3DD200E41208 /* yearTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 311AF34420CA3DD200E41208 /* yearTableViewCell.xib */; };
+		311E0566213956F1001D0EAF /* yearCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 311E0565213956F1001D0EAF /* yearCollectionViewCell.xib */; };
+		3139BCAA2138152300194F01 /* yearCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3139BCA92138152300194F01 /* yearCollectionViewController.m */; };
+		3139BCAD2138287900194F01 /* yearCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3139BCAC2138287900194F01 /* yearCollectionViewCell.m */; };
 		313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BC1EC3DC7500869084 /* addEventViewController.m */; };
 		313C27C01EC4AFF900869084 /* topView.m in Sources */ = {isa = PBXBuildFile; fileRef = 313C27BF1EC4AFF900869084 /* topView.m */; };
 		313C27C21EC4B1B100869084 /* topView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 313C27C11EC4B1B100869084 /* topView.xib */; };
+		314036E021344ADE00381C36 /* newYearTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314036DF21344ADE00381C36 /* newYearTableViewCell.xib */; };
+		315BB45A213EF55900D7108C /* dayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BB458213EF55900D7108C /* dayCollectionViewCell.m */; };
+		315BB45B213EF55900D7108C /* dayCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 315BB459213EF55900D7108C /* dayCollectionViewCell.xib */; };
+		315BB45E213EF64600D7108C /* monthCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BB45D213EF64600D7108C /* monthCollectionView.m */; };
 		316CA395211C78DF00EDCC91 /* navigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CA394211C78DF00EDCC91 /* navigationController.m */; };
 		316CA398211C807700EDCC91 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CA397211C807700EDCC91 /* detailViewController.m */; };
 		31735DB720AC758300A66F36 /* yearTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31735DB620AC758300A66F36 /* yearTableViewController.m */; };
@@ -54,11 +61,22 @@
 		31003FF31EC8CE9800DE21C8 /* myTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTableViewCell.h; sourceTree = "<group>"; };
 		31003FF41EC8CE9800DE21C8 /* myTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myTableViewCell.m; sourceTree = "<group>"; };
 		311AF34420CA3DD200E41208 /* yearTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = yearTableViewCell.xib; sourceTree = "<group>"; };
+		311E0565213956F1001D0EAF /* yearCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = yearCollectionViewCell.xib; sourceTree = "<group>"; };
+		3139BCA82138152300194F01 /* yearCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yearCollectionViewController.h; sourceTree = "<group>"; };
+		3139BCA92138152300194F01 /* yearCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearCollectionViewController.m; sourceTree = "<group>"; };
+		3139BCAB2138287900194F01 /* yearCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yearCollectionViewCell.h; sourceTree = "<group>"; };
+		3139BCAC2138287900194F01 /* yearCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearCollectionViewCell.m; sourceTree = "<group>"; };
 		313C27BB1EC3DC7500869084 /* addEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addEventViewController.h; sourceTree = "<group>"; };
 		313C27BC1EC3DC7500869084 /* addEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addEventViewController.m; sourceTree = "<group>"; };
 		313C27BE1EC4AFF900869084 /* topView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topView.h; sourceTree = "<group>"; };
 		313C27BF1EC4AFF900869084 /* topView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topView.m; sourceTree = "<group>"; };
 		313C27C11EC4B1B100869084 /* topView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topView.xib; sourceTree = "<group>"; };
+		314036DF21344ADE00381C36 /* newYearTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = newYearTableViewCell.xib; sourceTree = "<group>"; };
+		315BB457213EF55900D7108C /* dayCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dayCollectionViewCell.h; sourceTree = "<group>"; };
+		315BB458213EF55900D7108C /* dayCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dayCollectionViewCell.m; sourceTree = "<group>"; };
+		315BB459213EF55900D7108C /* dayCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dayCollectionViewCell.xib; sourceTree = "<group>"; };
+		315BB45C213EF64600D7108C /* monthCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthCollectionView.h; sourceTree = "<group>"; };
+		315BB45D213EF64600D7108C /* monthCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = monthCollectionView.m; sourceTree = "<group>"; };
 		316CA393211C78DF00EDCC91 /* navigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = navigationController.h; sourceTree = "<group>"; };
 		316CA394211C78DF00EDCC91 /* navigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = navigationController.m; sourceTree = "<group>"; };
 		316CA396211C807700EDCC91 /* detailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = detailViewController.h; sourceTree = "<group>"; };
@@ -136,8 +154,33 @@
 				31735DB820AC77DA00A66F36 /* yearTableViewCell.h */,
 				31735DB920AC77DA00A66F36 /* yearTableViewCell.m */,
 				311AF34420CA3DD200E41208 /* yearTableViewCell.xib */,
+				314036DF21344ADE00381C36 /* newYearTableViewCell.xib */,
 			);
 			name = yearTableViewCell;
+			sourceTree = "<group>";
+		};
+		3139BCA42138144F00194F01 /* yearCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				3139BCA82138152300194F01 /* yearCollectionViewController.h */,
+				3139BCA92138152300194F01 /* yearCollectionViewController.m */,
+				3139BCAB2138287900194F01 /* yearCollectionViewCell.h */,
+				3139BCAC2138287900194F01 /* yearCollectionViewCell.m */,
+				311E0565213956F1001D0EAF /* yearCollectionViewCell.xib */,
+			);
+			name = yearCollectionView;
+			sourceTree = "<group>";
+		};
+		315BB451213EF48600D7108C /* monthCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				315BB457213EF55900D7108C /* dayCollectionViewCell.h */,
+				315BB458213EF55900D7108C /* dayCollectionViewCell.m */,
+				315BB459213EF55900D7108C /* dayCollectionViewCell.xib */,
+				315BB45C213EF64600D7108C /* monthCollectionView.h */,
+				315BB45D213EF64600D7108C /* monthCollectionView.m */,
+			);
+			name = monthCollectionView;
 			sourceTree = "<group>";
 		};
 		31D0F8121E12893700C5E515 = {
@@ -165,8 +208,10 @@
 		31D0F81D1E12893700C5E515 /* MyCalender */ = {
 			isa = PBXGroup;
 			children = (
+				315BB451213EF48600D7108C /* monthCollectionView */,
 				3184ACE92121321D00A1504E /* ZOZolaZoomTransition.h */,
 				3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */,
+				3139BCA42138144F00194F01 /* yearCollectionView */,
 				31F2032520FC4BFF00DA736C /* MyCollectionViewCell */,
 				311AF33D20AE84D900E41208 /* yearTableViewCell */,
 				31D0F8211E12893700C5E515 /* AppDelegate.h */,
@@ -369,10 +414,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				31D0F82E1E12893700C5E515 /* LaunchScreen.storyboard in Resources */,
+				315BB45B213EF55900D7108C /* dayCollectionViewCell.xib in Resources */,
 				31D0F82B1E12893700C5E515 /* Assets.xcassets in Resources */,
 				313C27C21EC4B1B100869084 /* topView.xib in Resources */,
+				311E0566213956F1001D0EAF /* yearCollectionViewCell.xib in Resources */,
 				31D0F8291E12893700C5E515 /* Main.storyboard in Resources */,
 				311AF34520CA3DD200E41208 /* yearTableViewCell.xib in Resources */,
+				314036E021344ADE00381C36 /* newYearTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,15 +503,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */,
+				315BB45A213EF55900D7108C /* dayCollectionViewCell.m in Sources */,
 				31CD51341ED9710A00E920E0 /* UITextField+IndexPath.m in Sources */,
 				316CA395211C78DF00EDCC91 /* navigationController.m in Sources */,
 				316CA398211C807700EDCC91 /* detailViewController.m in Sources */,
+				3139BCAA2138152300194F01 /* yearCollectionViewController.m in Sources */,
 				31D0F8261E12893700C5E515 /* monthViewController.m in Sources */,
+				315BB45E213EF64600D7108C /* monthCollectionView.m in Sources */,
 				313C27C01EC4AFF900869084 /* topView.m in Sources */,
 				31F2032820FC4C8C00DA736C /* MyCollectionViewCell.m in Sources */,
 				31F2032B20FC6A0600DA736C /* collectionViewController.m in Sources */,
 				31735DB720AC758300A66F36 /* yearTableViewController.m in Sources */,
 				31003FF51EC8CE9800DE21C8 /* myTableViewCell.m in Sources */,
+				3139BCAD2138287900194F01 /* yearCollectionViewCell.m in Sources */,
 				31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */,
 				31735DBA20AC77DA00A66F36 /* yearTableViewCell.m in Sources */,
 				31D0F8201E12893700C5E515 /* main.m in Sources */,

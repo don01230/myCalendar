@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "yearTableViewCell.h"
 #import "monthViewController.h"
-@interface yearTableViewController : UITableViewController
+@interface yearTableViewController : UITableViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *yearTableView;
 
 @end

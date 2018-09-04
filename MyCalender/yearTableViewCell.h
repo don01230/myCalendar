@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@interface yearCollectionView : UICollectionView
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
+@end
+
+static NSString *CollectionViewCellIdentifier=@"CollectionViewCellIdentifier";
 
 @interface yearTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *yearTableViewCellContentView;
@@ -39,4 +46,42 @@
 
 @property int setYear;
 
+@property (nonatomic, strong) yearCollectionView *collectionView;
+
+- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath;
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
