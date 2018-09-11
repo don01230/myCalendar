@@ -10,4 +10,6 @@
 
 @interface monthCollectionView : UICollectionView
 
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
 @end

@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "monthCollectionView.h"
+#import "monthObject.h"
+#import "SSMonthNode.h"
+#import "SSDayNode.h"
+#import "SSConstants.h"
 @interface yearCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *monthView;
+@property SSMonthNode *thisMonth;
+//- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath;
 
 @end

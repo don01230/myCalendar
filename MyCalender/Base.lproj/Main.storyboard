@@ -378,7 +378,7 @@
         <!--yearNavigationController-->
         <scene sceneID="xnm-yj-Ail">
             <objects>
-                <navigationController id="GiY-bY-zc4" userLabel="yearNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="newYearNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GiY-bY-zc4" userLabel="yearNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g7x-w7-42K">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -428,18 +428,18 @@
                                 <size key="customSize" width="128" height="128"/>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="yearHeader" id="65I-Wh-Ivn">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="newYearHeader" id="65I-Wh-Ivn" customClass="yearHeaderCollectionReusableView">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q06-pa-UbO" userLabel="lbYear">
-                                    <rect key="frame" x="18" y="18" width="349" height="36"/>
-                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                    <rect key="frame" x="18" y="23" width="349" height="31"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9i3-wd-xm5" userLabel="seperator">
-                                    <rect key="frame" x="10" y="59" width="355" height="1"/>
+                                    <rect key="frame" x="20" y="59" width="335" height="1"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="YmB-2k-OZV"/>
@@ -450,11 +450,14 @@
                                 <constraint firstItem="Q06-pa-UbO" firstAttribute="leading" secondItem="65I-Wh-Ivn" secondAttribute="leadingMargin" constant="10" id="3MV-gH-rFq"/>
                                 <constraint firstAttribute="bottom" secondItem="9i3-wd-xm5" secondAttribute="bottom" id="5Gf-oj-Um4"/>
                                 <constraint firstItem="9i3-wd-xm5" firstAttribute="top" secondItem="Q06-pa-UbO" secondAttribute="bottom" constant="5" id="D5T-gV-laC"/>
-                                <constraint firstItem="9i3-wd-xm5" firstAttribute="leading" secondItem="65I-Wh-Ivn" secondAttribute="leading" constant="10" id="DCf-wQ-Rko"/>
-                                <constraint firstItem="Q06-pa-UbO" firstAttribute="top" secondItem="65I-Wh-Ivn" secondAttribute="topMargin" constant="10" id="U8e-D1-968"/>
+                                <constraint firstItem="9i3-wd-xm5" firstAttribute="leading" secondItem="65I-Wh-Ivn" secondAttribute="leading" constant="20" id="DCf-wQ-Rko"/>
+                                <constraint firstItem="Q06-pa-UbO" firstAttribute="top" secondItem="65I-Wh-Ivn" secondAttribute="topMargin" constant="15" id="U8e-D1-968"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="Q06-pa-UbO" secondAttribute="trailing" id="ZpS-71-fCR"/>
-                                <constraint firstAttribute="trailing" secondItem="9i3-wd-xm5" secondAttribute="trailing" constant="10" id="chS-T9-deO"/>
+                                <constraint firstAttribute="trailing" secondItem="9i3-wd-xm5" secondAttribute="trailing" constant="20" id="chS-T9-deO"/>
                             </constraints>
+                            <connections>
+                                <outlet property="lbYear" destination="Q06-pa-UbO" id="yzp-wq-g6T"/>
+                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="Ld1-0j-o2Z" id="Jv0-i6-gr1"/>
@@ -503,7 +506,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cGh-71-YiQ">
             <objects>
-                <navigationController id="dYZ-BA-HCn" customClass="navigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="imageNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dYZ-BA-HCn" customClass="navigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TVA-wK-LbM">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

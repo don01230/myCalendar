@@ -12,27 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="dayCollectionViewCell">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dayCollectionViewCell" id="gTV-IL-0wX" userLabel="dayCollectionViewCell" customClass="dayCollectionViewCell">
             <rect key="frame" x="0.0" y="0.0" width="119" height="131"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="119" height="131"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAx-TU-SvF" userLabel="lbDay">
-                        <rect key="frame" x="0.0" y="0.0" width="119" height="131"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                </subviews>
             </view>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="fAx-TU-SvF" secondAttribute="trailing" id="5a8-ij-h5M"/>
-                <constraint firstItem="fAx-TU-SvF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="N69-bh-xhS"/>
-                <constraint firstAttribute="bottom" secondItem="fAx-TU-SvF" secondAttribute="bottom" id="PnV-wy-CM9"/>
-                <constraint firstItem="fAx-TU-SvF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xJY-oK-MK9"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="119" height="131"/>
             <point key="canvasLocation" x="59.5" y="92.5"/>

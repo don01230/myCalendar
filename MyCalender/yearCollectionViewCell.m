@@ -9,12 +9,7 @@
 #import "yearCollectionViewCell.h"
 
 @implementation yearCollectionViewCell
-{
-    int thisYear;
-    int thisMonth;
-    int thisDay;
-    int num;
-}
+
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -26,26 +21,74 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    num=0;
-    thisYear = (int)[[[NSCalendar currentCalendar]
-                      components:NSCalendarUnitYear fromDate:[NSDate date]]
-                     year];
-    
-    thisMonth=(int)[[[NSCalendar currentCalendar]
-                     components:NSCalendarUnitMonth fromDate:[NSDate date]]
-                    month];
-    
-    thisDay=(int)[[[NSCalendar currentCalendar]
-                   components:NSCalendarUnitDay fromDate:[NSDate date]]
-                  day];
-//    NSLog(@"thisDay:%d",(int)thisDay);
-//    NSLog(@"thisMonth:%d",(int)thisMonth);
-//    NSLog(@"thisYear:%d",(int)thisYear);
 }
 
 -(void)drawRect:(CGRect)rect{
+//    NSDateComponents *today = [[SSCalendarUtils calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay
+//                                                            fromDate:[NSDate date]];
+    
     [super drawRect:rect];
     
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    
+    CGFloat headerHeight = 22.0f;
+    CGFloat dayWidth=self.frame.size.width/7;
+    
+    [self drawMonthHeader];
+    
+    for (SSDayNode *day in _thisMonth.dayNodes) {
+        CGFloat x = day.weekday%7 * dayWidth;
+//        NSLog(@"month:%ld, weekdayOfFirstDay:%ld",_thisMonth.value, _thisMonth.weekdayOfFirstDay);
+        CGFloat y = headerHeight + (day.value + _thisMonth.weekdayOfFirstDay - 1) / 7 * dayWidth;
+        rect = CGRectMake(x, y, dayWidth-2.0f, dayWidth-2.0f);
+//        rect.origin.y++;
+        [self drawTextForDay:day withRadius:dayWidth inRect:rect];
+    }
+    CGContextRestoreGState(context);
 }
+
+- (void)drawTextForDay:(SSDayNode *)day withRadius:(CGFloat)radius inRect:(CGRect)rect
+{
+    UIFont *font = [SSStyles fontOfSize:[yearCollectionViewCell fontSizeForRadius:radius]];
+    NSString *dayText = [NSString stringWithFormat:@"%ld", day.value];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSTextAlignmentCenter];
+    
+    [dayText drawInRect:rect withAttributes:@{ NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle }];
+}
+
++ (CGFloat)fontSizeForRadius:(CGFloat)radius
+{
+    if (radius >= 17.0f) {
+        return 11.0f;
+    } else if (radius >= 16.0f) {
+        return 10.0f;
+    } else {
+        return 8.0f;
+    }
+}
+
+- (void)drawMonthHeader{
+//    NSLog(@"thisMonth.value%ld",_thisMonth.value);
+    NSString *title=[[[NSDateFormatter alloc] init] shortMonthSymbols][_thisMonth.value-1];
+    [title drawAtPoint:CGPointMake(0, 0) withAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f] }];
+}
+
+//- (void)setMonth:(SSMonthNode *)month{
+//    _thisMonth=month;
+//    [self setNeedsDisplay];
+//}
+
+//-(void) setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource,UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath{
+//
+//    _monthCollectionView.dataSource=dataSourceDelegate;
+//    _monthCollectionView.delegate=dataSourceDelegate;
+//    _monthCollectionView.indexPath=indexPath;
+//
+//}
 
 @end

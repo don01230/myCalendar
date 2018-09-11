@@ -7,15 +7,22 @@
 //
 
 #import "yearCollectionViewController.h"
-
+#import "SSCalendarUtils.h"
 @interface yearCollectionViewController ()
 
 @end
 
 @implementation yearCollectionViewController
 
-static NSString * const reuseIdentifier = @"yearCollectionViewCell";
+static NSString * const monthReuseIdentifier = @"yearCollectionViewCell";
+static NSString * const yearHeaderReuseIdentifier = @"newYearHeader";
 bool isFirst=YES;
+
+- (id)initWithEvents:(NSArray *)events
+{
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,8 +35,22 @@ bool isFirst=YES;
     
     // Do any additional setup after loading the view.
     UINib *cellNib=[UINib nibWithNibName:@"yearCollectionViewCell" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:monthReuseIdentifier];
     
+    NSInteger year = [SSCalendarUtils currentYear];
+    
+//    SSYearNode *yearNode1=[[SSYearNode alloc] initWithValue:year];
+//    SSYearNode *yearNode2=[[SSYearNode alloc] initWithValue:year+1];
+//    SSYearNode *yearNode3=[[SSYearNode alloc] initWithValue:year+2];
+//    SSYearNode *yearNode4=[[SSYearNode alloc] initWithValue:year+3];
+//    SSYearNode *yearNode5=[[SSYearNode alloc] initWithValue:year+4];
+//    self.year=@[yearNode1,yearNode2,yearNode3,yearNode4,yearNode5];
+    
+    _mutableYear=[[NSMutableArray alloc] init];
+    for (int i=-6; i<7; i++) {
+        SSYearNode *yearNode=[[SSYearNode alloc] initWithValue:year+i];
+        [_mutableYear addObject:yearNode];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,20 +92,34 @@ bool isFirst=YES;
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 12;
+    if([collectionView isEqual:self.collectionView]){
+        return [_mutableYear count];
+    }else{
+        return 1;
+    }
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 12;
+    if([collectionView isEqual:self.collectionView]){
+        return 12;
+    }else{
+        return 1;
+    }
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    yearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // Configure the cell
+    yearCollectionViewCell *monthCell = [collectionView dequeueReusableCellWithReuseIdentifier:monthReuseIdentifier forIndexPath:indexPath];
+//    NSLog(@"indexPath.item:%ld",indexPath.item);
+    SSYearNode *year=_mutableYear[indexPath.section];
+//    NSLog(@"thisYear.months:%ld",month.value);
+    monthCell.thisMonth=year.months[indexPath.item];
+    [monthCell setNeedsDisplay];
     
-    return cell;
+    return monthCell;
+
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -122,21 +157,44 @@ bool isFirst=YES;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGFloat length = (CGRectGetWidth(self.view.frame) / 3)-18;
+    return CGSizeMake(length, length+5);
 
-    CGFloat length = (CGRectGetWidth(self.view.frame) / 3)-8;
-
-    return CGSizeMake(length, length+10);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView *reusableView = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
-        UICollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"yearHeader" forIndexPath:indexPath];
-        reusableView = header;
-    }
+    yearHeaderCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"newYearHeader" forIndexPath:indexPath];
+    SSYearNode *yearNode=_mutableYear[indexPath.section];
+    header.lbYear.text=[NSString stringWithFormat:@"%ld",yearNode.value];
     
-    return reusableView;
+//    NSLog(@"indexPath:%ld",indexPath.section);
+//    NSLog(@"header.lbYear:%@",header.lbYear.text);
+    return header;
 }
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 5;
+}
+
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+//    if([collectionView isEqual:self.collectionView]){
+//        return 5;
+//    }else{
+//        return 0;
+//    }
+//}
+
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(20, 20, 15, 20);//top, left, bottom, right
+}
+
+//- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+//    if([collectionView isEqual: self.collectionView]){
+//        [(yearCollectionViewCell *)cell setCollectionViewDataSourceDelegate:self indexPath:indexPath];
+//    }
+//}
 
 @end

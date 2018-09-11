@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "yearCollectionViewCell.h"
+#import "dayCollectionViewCell.h"
+#import "yearHeaderCollectionReusableView.h"
+#import "SSYearNode.h"
 
 @interface yearCollectionViewController : UICollectionViewController
+
+@property NSMutableArray *mutableYear;
 
 @end

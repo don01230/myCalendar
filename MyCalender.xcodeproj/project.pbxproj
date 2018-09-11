@@ -19,12 +19,14 @@
 		314036E021344ADE00381C36 /* newYearTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314036DF21344ADE00381C36 /* newYearTableViewCell.xib */; };
 		315BB45A213EF55900D7108C /* dayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BB458213EF55900D7108C /* dayCollectionViewCell.m */; };
 		315BB45B213EF55900D7108C /* dayCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 315BB459213EF55900D7108C /* dayCollectionViewCell.xib */; };
-		315BB45E213EF64600D7108C /* monthCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BB45D213EF64600D7108C /* monthCollectionView.m */; };
+		315BB466213FBBB900D7108C /* monthCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BB465213FBBB900D7108C /* monthCollectionView.m */; };
 		316CA395211C78DF00EDCC91 /* navigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CA394211C78DF00EDCC91 /* navigationController.m */; };
 		316CA398211C807700EDCC91 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CA397211C807700EDCC91 /* detailViewController.m */; };
 		31735DB720AC758300A66F36 /* yearTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31735DB620AC758300A66F36 /* yearTableViewController.m */; };
 		31735DBA20AC77DA00A66F36 /* yearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31735DB920AC77DA00A66F36 /* yearTableViewCell.m */; };
 		3184ACEA2121321D00A1504E /* ZOZolaZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */; };
+		31BE13082144360A00A54276 /* yearHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE13072144360A00A54276 /* yearHeaderCollectionReusableView.m */; };
+		31BE130F21455D8900A54276 /* monthObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE130E21455D8900A54276 /* monthObject.m */; };
 		31CD51341ED9710A00E920E0 /* UITextField+IndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CD51331ED9710A00E920E0 /* UITextField+IndexPath.m */; };
 		31D0F8201E12893700C5E515 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F81F1E12893700C5E515 /* main.m */; };
 		31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F8221E12893700C5E515 /* AppDelegate.m */; };
@@ -75,8 +77,8 @@
 		315BB457213EF55900D7108C /* dayCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dayCollectionViewCell.h; sourceTree = "<group>"; };
 		315BB458213EF55900D7108C /* dayCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dayCollectionViewCell.m; sourceTree = "<group>"; };
 		315BB459213EF55900D7108C /* dayCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dayCollectionViewCell.xib; sourceTree = "<group>"; };
-		315BB45C213EF64600D7108C /* monthCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthCollectionView.h; sourceTree = "<group>"; };
-		315BB45D213EF64600D7108C /* monthCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = monthCollectionView.m; sourceTree = "<group>"; };
+		315BB464213FBBB900D7108C /* monthCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthCollectionView.h; sourceTree = "<group>"; };
+		315BB465213FBBB900D7108C /* monthCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = monthCollectionView.m; sourceTree = "<group>"; };
 		316CA393211C78DF00EDCC91 /* navigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = navigationController.h; sourceTree = "<group>"; };
 		316CA394211C78DF00EDCC91 /* navigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = navigationController.m; sourceTree = "<group>"; };
 		316CA396211C807700EDCC91 /* detailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = detailViewController.h; sourceTree = "<group>"; };
@@ -87,6 +89,10 @@
 		31735DB920AC77DA00A66F36 /* yearTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearTableViewCell.m; sourceTree = "<group>"; };
 		3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZOZolaZoomTransition.m; sourceTree = "<group>"; };
 		3184ACE92121321D00A1504E /* ZOZolaZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZOZolaZoomTransition.h; sourceTree = "<group>"; };
+		31BE13062144360A00A54276 /* yearHeaderCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yearHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		31BE13072144360A00A54276 /* yearHeaderCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearHeaderCollectionReusableView.m; sourceTree = "<group>"; };
+		31BE130D21455D8900A54276 /* monthObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthObject.h; sourceTree = "<group>"; };
+		31BE130E21455D8900A54276 /* monthObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = monthObject.m; sourceTree = "<group>"; };
 		31CD51321ED9710A00E920E0 /* UITextField+IndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+IndexPath.h"; sourceTree = "<group>"; };
 		31CD51331ED9710A00E920E0 /* UITextField+IndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IndexPath.m"; sourceTree = "<group>"; };
 		31D0F81B1E12893700C5E515 /* MyCalender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalender.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +173,8 @@
 				3139BCAB2138287900194F01 /* yearCollectionViewCell.h */,
 				3139BCAC2138287900194F01 /* yearCollectionViewCell.m */,
 				311E0565213956F1001D0EAF /* yearCollectionViewCell.xib */,
+				31BE13062144360A00A54276 /* yearHeaderCollectionReusableView.h */,
+				31BE13072144360A00A54276 /* yearHeaderCollectionReusableView.m */,
 			);
 			name = yearCollectionView;
 			sourceTree = "<group>";
@@ -177,10 +185,19 @@
 				315BB457213EF55900D7108C /* dayCollectionViewCell.h */,
 				315BB458213EF55900D7108C /* dayCollectionViewCell.m */,
 				315BB459213EF55900D7108C /* dayCollectionViewCell.xib */,
-				315BB45C213EF64600D7108C /* monthCollectionView.h */,
-				315BB45D213EF64600D7108C /* monthCollectionView.m */,
+				315BB464213FBBB900D7108C /* monthCollectionView.h */,
+				315BB465213FBBB900D7108C /* monthCollectionView.m */,
 			);
 			name = monthCollectionView;
+			sourceTree = "<group>";
+		};
+		31BE130C21455D6800A54276 /* monthObject */ = {
+			isa = PBXGroup;
+			children = (
+				31BE130D21455D8900A54276 /* monthObject.h */,
+				31BE130E21455D8900A54276 /* monthObject.m */,
+			);
+			name = monthObject;
 			sourceTree = "<group>";
 		};
 		31D0F8121E12893700C5E515 = {
@@ -208,6 +225,7 @@
 		31D0F81D1E12893700C5E515 /* MyCalender */ = {
 			isa = PBXGroup;
 			children = (
+				31BE130C21455D6800A54276 /* monthObject */,
 				315BB451213EF48600D7108C /* monthCollectionView */,
 				3184ACE92121321D00A1504E /* ZOZolaZoomTransition.h */,
 				3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */,
@@ -313,6 +331,7 @@
 				31D0F8171E12893700C5E515 /* Sources */,
 				31D0F8181E12893700C5E515 /* Frameworks */,
 				31D0F8191E12893700C5E515 /* Resources */,
+				39A94B0793F423F0B96191A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -441,6 +460,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		39A94B0793F423F0B96191A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MyCalender/Pods-MyCalender-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SSCalendar/SSCalendar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSCalendar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyCalender/Pods-MyCalender-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3F5833B114FFF1FE56E9D97E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -504,12 +541,14 @@
 			files = (
 				313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */,
 				315BB45A213EF55900D7108C /* dayCollectionViewCell.m in Sources */,
+				31BE13082144360A00A54276 /* yearHeaderCollectionReusableView.m in Sources */,
 				31CD51341ED9710A00E920E0 /* UITextField+IndexPath.m in Sources */,
 				316CA395211C78DF00EDCC91 /* navigationController.m in Sources */,
+				31BE130F21455D8900A54276 /* monthObject.m in Sources */,
 				316CA398211C807700EDCC91 /* detailViewController.m in Sources */,
 				3139BCAA2138152300194F01 /* yearCollectionViewController.m in Sources */,
 				31D0F8261E12893700C5E515 /* monthViewController.m in Sources */,
-				315BB45E213EF64600D7108C /* monthCollectionView.m in Sources */,
+				315BB466213FBBB900D7108C /* monthCollectionView.m in Sources */,
 				313C27C01EC4AFF900869084 /* topView.m in Sources */,
 				31F2032820FC4C8C00DA736C /* MyCollectionViewCell.m in Sources */,
 				31F2032B20FC6A0600DA736C /* collectionViewController.m in Sources */,
