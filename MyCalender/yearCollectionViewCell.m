@@ -24,8 +24,8 @@
 }
 
 -(void)drawRect:(CGRect)rect{
-//    NSDateComponents *today = [[SSCalendarUtils calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay
-//                                                            fromDate:[NSDate date]];
+    NSDateComponents *today = [[SSCalendarUtils calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay
+                                                            fromDate:[NSDate date]];
     
     [super drawRect:rect];
     
@@ -41,18 +41,55 @@
     
     for (SSDayNode *day in _thisMonth.dayNodes) {
         CGFloat x = day.weekday%7 * dayWidth;
-//        NSLog(@"month:%ld, weekdayOfFirstDay:%ld",_thisMonth.value, _thisMonth.weekdayOfFirstDay);
         CGFloat y = headerHeight + (day.value + _thisMonth.weekdayOfFirstDay - 1) / 7 * dayWidth;
-        rect = CGRectMake(x, y, dayWidth-2.0f, dayWidth-2.0f);
-//        rect.origin.y++;
-        [self drawTextForDay:day withRadius:dayWidth inRect:rect];
+        rect = CGRectMake(x, y, dayWidth - 2.0f, dayWidth - 2.0f);
+        
+        if ([day isEqualToDateComponents:today] && _isCurrentMonth==YES) {
+            [self drawTodayCircleWithContext:context inRect:rect];
+
+            [self drawTextForToday:day withRadius:dayWidth inRect:rect];
+        } else {
+
+            [self drawTextForDay:day withRadius:dayWidth inRect:rect];
+        }
     }
     CGContextRestoreGState(context);
 }
 
+- (void)drawTodayCircleWithContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    CGContextAddEllipseInRect(context, rect);
+    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextFillPath(context);
+    
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+}
+
+- (void)drawDayCircle:(SSDayNode *)day withContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    if (day.hasEvents > 0) {
+        CGContextAddEllipseInRect(context, rect);
+        CGContextSetStrokeColorWithColor(context, [UIColor colorWithHexString:COLOR_SECONDARY].CGColor);
+        CGContextDrawPath(context, kCGPathStroke);
+    }
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+}
+
+- (void)drawTextForToday:(SSDayNode *)day withRadius:(CGFloat)radius inRect:(CGRect)rect
+{
+    UIFont *font = [SSStyles boldFontOfSize:[yearCollectionViewCell fontSizeForRadius:radius]];
+    NSString *dayText = [NSString stringWithFormat:@"%ld", day.value];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSTextAlignmentCenter];
+    
+    [dayText drawInRect:rect withAttributes:@{ NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle , NSForegroundColorAttributeName: [UIColor whiteColor]}];
+}
+
 - (void)drawTextForDay:(SSDayNode *)day withRadius:(CGFloat)radius inRect:(CGRect)rect
 {
-    UIFont *font = [SSStyles fontOfSize:[yearCollectionViewCell fontSizeForRadius:radius]];
+    UIFont *font = [SSStyles boldFontOfSize:[yearCollectionViewCell fontSizeForRadius:radius]];
     NSString *dayText = [NSString stringWithFormat:@"%ld", day.value];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -75,7 +112,11 @@
 - (void)drawMonthHeader{
 //    NSLog(@"thisMonth.value%ld",_thisMonth.value);
     NSString *title=[[[NSDateFormatter alloc] init] shortMonthSymbols][_thisMonth.value-1];
-    [title drawAtPoint:CGPointMake(0, 0) withAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f] }];
+    if (_isCurrentMonth) {
+        [title drawAtPoint:CGPointMake(0, 0) withAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f], NSForegroundColorAttributeName: [UIColor blueColor]}];
+    }else{
+        [title drawAtPoint:CGPointMake(0, 0) withAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f]}];
+    }
 }
 
 //- (void)setMonth:(SSMonthNode *)month{

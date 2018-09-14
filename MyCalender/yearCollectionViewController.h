@@ -15,5 +15,6 @@
 @interface yearCollectionViewController : UICollectionViewController
 
 @property NSMutableArray *mutableYear;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnToday;
 
 @end

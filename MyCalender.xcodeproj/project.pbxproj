@@ -467,10 +467,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyCalender/Pods-MyCalender-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RSDayFlow/RSDayFlow.framework",
 				"${BUILT_PRODUCTS_DIR}/SSCalendar/SSCalendar.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSDayFlow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSCalendar.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,7 +733,7 @@
 				INFOPLIST_FILE = MyCalender/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = cuhk.MyCalender;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MyCalender.don;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyCalender/MyCalender-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -749,7 +751,7 @@
 				INFOPLIST_FILE = MyCalender/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = cuhk.MyCalender;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MyCalender.don;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyCalender/MyCalender-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

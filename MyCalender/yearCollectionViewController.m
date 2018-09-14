@@ -8,7 +8,17 @@
 
 #import "yearCollectionViewController.h"
 #import "SSCalendarUtils.h"
+#import "RSDFDatePickerDate.h"
+
 @interface yearCollectionViewController ()
+
+@property NSCalendar *calendar;
+@property NSDate *fromDate;
+@property NSDate *toDate;
+@property NSDate *today;
+@property NSInteger currentYear;
+@property NSDate *startDate;
+@property NSDate *endDate;
 
 @end
 
@@ -17,12 +27,7 @@
 static NSString * const monthReuseIdentifier = @"yearCollectionViewCell";
 static NSString * const yearHeaderReuseIdentifier = @"newYearHeader";
 bool isFirst=YES;
-
-- (id)initWithEvents:(NSArray *)events
-{
-    
-    return self;
-}
+BOOL isScroll=YES;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,23 +39,37 @@ bool isFirst=YES;
 //    [self.collectionView registerClass:[yearCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout=UIRectEdgeNone;
+//    self.extendedLayoutIncludesOpaqueBars=YES;
+//    self.automaticallyAdjustsScrollViewInsets=YES;
     UINib *cellNib=[UINib nibWithNibName:@"yearCollectionViewCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:monthReuseIdentifier];
     
-    NSInteger year = [SSCalendarUtils currentYear];
+    _calendar = [NSCalendar currentCalendar];
     
-//    SSYearNode *yearNode1=[[SSYearNode alloc] initWithValue:year];
-//    SSYearNode *yearNode2=[[SSYearNode alloc] initWithValue:year+1];
-//    SSYearNode *yearNode3=[[SSYearNode alloc] initWithValue:year+2];
-//    SSYearNode *yearNode4=[[SSYearNode alloc] initWithValue:year+3];
-//    SSYearNode *yearNode5=[[SSYearNode alloc] initWithValue:year+4];
-//    self.year=@[yearNode1,yearNode2,yearNode3,yearNode4,yearNode5];
+    _fromDate = [self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:((^{
+        NSDateComponents *components=[NSDateComponents new];
+        components.year=-6;
+        return components;
+    })()) toDate:[NSDate date] options:0]];
     
-    _mutableYear=[[NSMutableArray alloc] init];
-    for (int i=-6; i<7; i++) {
-        SSYearNode *yearNode=[[SSYearNode alloc] initWithValue:year+i];
-        [_mutableYear addObject:yearNode];
-    }
+    _toDate = [self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:((^{
+        NSDateComponents *components=[NSDateComponents new];
+        components.year=6;
+        return components;
+    })()) toDate:[NSDate date] options:0]];
+    
+    _currentYear = [SSCalendarUtils currentYear];
+
+//    NSDateComponents *todayYearMonthDayComponents = [self.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+//    _today = [self.calendar dateFromComponents:todayYearMonthDayComponents];
+    _today=[NSDate date];
+    
+    [_btnToday setTarget:self];
+    [_btnToday setAction:@selector(scrollToToday)];
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -64,14 +83,107 @@ bool isFirst=YES;
 {
     [super viewDidLayoutSubviews];
     
-//    NSIndexPath *indexPath = [[self.collectionView indexPathsForVisibleItems] lastObject];
-//    if(isFirst){
-//        NSIndexPath *currentIndexPathReset = [NSIndexPath indexPathForItem:0 inSection:6];
-//        UICollectionViewLayoutAttributes *attributes=[self.collectionView.collectionViewLayout layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:currentIndexPathReset];
-//        [self.collectionView setContentOffset:CGPointMake(0, attributes.frame.origin.y-60) animated:NO];
-//        isFirst=NO;
-//    }
-//    [self.collectionView scrollToItemAtIndexPath:currentIndexPathReset atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    if(isFirst){
+        [self scrollToDate:[NSDate date] animated:NO];
+        isFirst=NO;
+    }
+    
+}
+-(void)scrollToToday{
+    [self scrollToDate:[NSDate date] animated:YES];
+
+}
+
+- (void)scrollToDate:(NSDate *)date animated:(BOOL)animated{
+    UICollectionView *cv=self.collectionView;
+    UICollectionViewLayout *cvLayout=self.collectionView.collectionViewLayout;
+    
+    NSDateComponents *dateYearMonthComponents = [self.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth) fromDate:date];
+    NSDate *month = [self.calendar dateFromComponents:dateYearMonthComponents];
+    
+    _fromDate = [self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:((^{
+        NSDateComponents *components = [NSDateComponents new];
+        components.year = -6;
+        return components;
+    })()) toDate:month options:0]];
+    
+    _toDate = [self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:((^{
+        NSDateComponents *components = [NSDateComponents new];
+        components.year = 6;
+        return components;
+    })()) toDate:month options:0]];
+    
+    [cv reloadData];
+    [cvLayout invalidateLayout];
+    [cvLayout prepareLayout];
+    
+    NSIndexPath *dateItemIndexPath = [self indexPathForDate:date];
+    NSInteger yearSection = [self sectionForDate:date];
+    
+    CGRect dateItemRect = [self frameForItemAtIndexPath:dateItemIndexPath];
+    CGRect monthSectionHeaderRect = [self frameForHeaderForSection:yearSection];
+    
+    CGFloat delta = CGRectGetMaxY(dateItemRect) - CGRectGetMinY(monthSectionHeaderRect);
+    CGFloat actualViewHeight = CGRectGetHeight(cv.frame) - cv.contentInset.top - cv.contentInset.bottom;
+    
+    if (delta <= actualViewHeight) {
+        [self scrollToTopOfSection:yearSection animated:animated];
+    } else {
+        [cv scrollToItemAtIndexPath:dateItemIndexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:animated];
+    }
+}
+
+- (CGRect)frameForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    
+    return attributes.frame;
+}
+
+- (NSIndexPath *)indexPathForDate:(NSDate *)date
+{
+    NSInteger yearSection = [self sectionForDate:date];
+    NSDate *firstMonthInYear = [self dateForFirstMonthInSection:yearSection];
+    NSInteger dateItem = [self.calendar components:NSCalendarUnitMonth fromDate:firstMonthInYear toDate:date options:0].month;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:dateItem inSection:yearSection];
+    
+    return indexPath;
+}
+
+
+
+- (void)scrollToTopOfSection:(NSInteger)section animated:(BOOL)animated
+{
+    CGRect headerRect = [self frameForHeaderForSection:section];
+    CGPoint topOfHeader = CGPointMake(0, headerRect.origin.y - self.collectionView.contentInset.top);
+//    CGPoint topOfHeader = CGPointMake(0, headerRect.origin.y - self.collectionView.contentInset.top - [self collectionView:self.collectionView layout:self.collectionViewLayout referenceSizeForHeaderInSection:section].height);
+    [self.collectionView setContentOffset:topOfHeader animated:animated];
+
+}
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+//    return CGSizeMake(self.collectionView.frame.size.width, 64);
+//}
+
+- (CGRect)frameForHeaderForSection:(NSInteger)section
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
+    UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
+//    UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    
+    return attributes.frame;
+}
+
+- (NSInteger)sectionForDate:(NSDate *)date{
+    return [self.calendar components:NSCalendarUnitYear fromDate:[self dateForFirstMonthInSection:0] toDate:date options:0].year;
+}
+
+- (NSDate *)dateForFirstMonthInSection:(NSInteger)section{
+    return [self.calendar dateByAddingComponents:((^{
+        NSDateComponents *dateComponents = [NSDateComponents new];
+        dateComponents.year=section;
+        return dateComponents;
+    })()) toDate:_fromDate options:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,34 +204,50 @@ bool isFirst=YES;
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    if([collectionView isEqual:self.collectionView]){
-        return [_mutableYear count];
-    }else{
-        return 1;
-    }
+    return [self.calendar components:NSCalendarUnitYear fromDate:self.fromDate toDate:self.toDate options:0].year;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if([collectionView isEqual:self.collectionView]){
         return 12;
-    }else{
-        return 1;
-    }
-    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     yearCollectionViewCell *monthCell = [collectionView dequeueReusableCellWithReuseIdentifier:monthReuseIdentifier forIndexPath:indexPath];
-//    NSLog(@"indexPath.item:%ld",indexPath.item);
-    SSYearNode *year=_mutableYear[indexPath.section];
-//    NSLog(@"thisYear.months:%ld",month.value);
+
+    NSDate *date = [self.calendar dateByAddingComponents:((^{
+        NSDateComponents *components=[NSDateComponents new];
+        components.year=indexPath.section;
+        components.month=indexPath.item;
+        return components;
+    })()) toDate:_fromDate options:0];
+    
+    RSDFDatePickerDate rsdfDate=[self pickerDateFromDate:date];
+    
+    SSYearNode *year= [[SSYearNode alloc] initWithValue:rsdfDate.year];
     monthCell.thisMonth=year.months[indexPath.item];
+    
+    RSDFDatePickerDate todayDate=[self pickerDateFromDate:_today];
+    if (rsdfDate.year==todayDate.year && rsdfDate.month==todayDate.month) {
+        monthCell.isCurrentMonth=YES;
+    }else{
+        monthCell.isCurrentMonth=NO;
+    }
     [monthCell setNeedsDisplay];
     
     return monthCell;
 
+}
+
+- (RSDFDatePickerDate)pickerDateFromDate:(NSDate *)date
+{
+    NSDateComponents *components = [self.calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
+    return (RSDFDatePickerDate) {
+        components.year,
+        components.month,
+        components.day
+    };
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -164,12 +292,23 @@ bool isFirst=YES;
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    yearHeaderCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"newYearHeader" forIndexPath:indexPath];
-    SSYearNode *yearNode=_mutableYear[indexPath.section];
-    header.lbYear.text=[NSString stringWithFormat:@"%ld",yearNode.value];
+    yearHeaderCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:yearHeaderReuseIdentifier forIndexPath:indexPath];
     
-//    NSLog(@"indexPath:%ld",indexPath.section);
-//    NSLog(@"header.lbYear:%@",header.lbYear.text);
+    NSDate *date = [self.calendar dateByAddingComponents:((^{
+        NSDateComponents *components=[NSDateComponents new];
+        components.year=indexPath.section;
+        return components;
+    })()) toDate:_fromDate options:0];
+    
+    NSDateComponents *components=[self.calendar components:NSCalendarUnitYear fromDate:date];
+    header.lbYear.text=[NSString stringWithFormat:@"%ld",[components year]];
+    
+    if (([components year])==_currentYear) {
+        header.lbYear.textColor=[UIColor blueColor];
+    }else{
+        header.lbYear.textColor=[UIColor blackColor];
+    }
+
     return header;
 }
 
@@ -186,15 +325,80 @@ bool isFirst=YES;
 //    }
 //}
 
+- (void)viewWillLayoutSubviews{
+
+    if(self.collectionView.contentOffset.y < 0.0f){
+        [self appendPastDates];
+    }
+
+    if(self.collectionView.contentOffset.y > (self.collectionView.contentSize.height - CGRectGetHeight(self.collectionView.bounds))){
+        [self appendFutureDates];
+    }
+
+    [super viewWillLayoutSubviews];
+}
+
+- (void)appendFutureDates{
+    [self shiftDatesByComponents:((^{
+        NSDateComponents *dateComponents = [NSDateComponents new];
+        dateComponents.year = 6;
+        return dateComponents;
+    })())];
+}
+
+- (void)appendPastDates
+{
+    [self shiftDatesByComponents:((^{
+        NSDateComponents *dateComponents = [NSDateComponents new];
+        dateComponents.year = -6;
+        return dateComponents;
+    })())];
+}
+
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(20, 20, 15, 20);//top, left, bottom, right
 }
 
-//- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-//    if([collectionView isEqual: self.collectionView]){
-//        [(yearCollectionViewCell *)cell setCollectionViewDataSourceDelegate:self indexPath:indexPath];
-//    }
-//}
+- (void)shiftDatesByComponents:(NSDateComponents *)components{
+    UICollectionView *cv = self.collectionView;
+    UICollectionViewLayout *cvLayout = self.collectionView.collectionViewLayout;
+    
+    NSArray *visibleCell = [cv visibleCells];
+    if(![visibleCell count])
+        return;
+    
+    NSIndexPath *fromIndexPath = [cv indexPathForCell:(visibleCell[0])];
+    NSInteger fromSection = fromIndexPath.section;
+    NSDate *fromSectionOfDate = [self dateForFirstMonthInSection:fromSection];
+    UICollectionViewLayoutAttributes *fromAttrs = [cvLayout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:fromSection]];
+    CGPoint fromSectionOrigin = [self.view convertPoint:fromAttrs.frame.origin fromView:cv];
+
+    
+    _fromDate=[self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:components toDate:self.fromDate options:0]];
+    
+    _toDate=[self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:components toDate:self.toDate options:0]];
+    
+    [cv reloadData];
+    [cvLayout invalidateLayout];
+    [cvLayout prepareLayout];
+    
+    NSInteger toSection = [self sectionForDate:fromSectionOfDate];
+    UICollectionViewLayoutAttributes *toAttrs = [cvLayout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:toSection]];
+    CGPoint toSectionOrigin = [self.view convertPoint:toAttrs.frame.origin fromView:cv];
+//    CGPoint toSectionOrigin = toAttrs.frame.origin;
+
+    
+    [cv setContentOffset:(CGPoint) {
+       cv.contentOffset.x,
+        cv.contentOffset.y + (toSectionOrigin.y-fromSectionOrigin.y)
+    }];
+}
+
+- (NSDate *)dateWithFirstMonthOfYear:(NSDate *)date{
+    NSDateComponents *dateComponents = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:date];
+    dateComponents.month=1;
+    return [self.calendar dateFromComponents:dateComponents];
+}
 
 @end

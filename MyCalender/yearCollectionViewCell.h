@@ -15,6 +15,7 @@
 @interface yearCollectionViewCell : UICollectionViewCell
 
 @property SSMonthNode *thisMonth;
+@property BOOL isCurrentMonth;
 //- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath;
 
 @end
