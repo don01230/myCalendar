@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "monthCollectionViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSString *viewControllerIdentifier=@"monthCollectionViewController";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    monthCollectionViewController *presentedViewController = [storyboard instantiateViewControllerWithIdentifier:viewControllerIdentifier];
+    
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    [navController pushViewController:presentedViewController animated:NO];
     self.window.backgroundColor=[UIColor whiteColor];
     return YES;
 }

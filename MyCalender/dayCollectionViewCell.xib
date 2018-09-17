@@ -18,9 +18,36 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="119" height="131"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RY-Nh-gSn" userLabel="divider">
+                        <rect key="frame" x="0.0" y="0.0" width="119" height="1"/>
+                        <color key="backgroundColor" white="0.80334436890000005" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Tg2-Yx-L6z"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMf-XL-Hkc" userLabel="lbDay">
+                        <rect key="frame" x="0.0" y="1" width="119" height="130"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="oMf-XL-Hkc" firstAttribute="top" secondItem="5RY-Nh-gSn" secondAttribute="bottom" id="CjH-ja-fbd"/>
+                <constraint firstAttribute="trailing" secondItem="5RY-Nh-gSn" secondAttribute="trailing" id="EXG-M2-fk8"/>
+                <constraint firstItem="oMf-XL-Hkc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ijz-Vc-hDG"/>
+                <constraint firstAttribute="trailing" secondItem="oMf-XL-Hkc" secondAttribute="trailing" id="SYg-Ff-tBs"/>
+                <constraint firstItem="5RY-Nh-gSn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UGh-Rp-EjA"/>
+                <constraint firstAttribute="bottom" secondItem="oMf-XL-Hkc" secondAttribute="bottom" id="eXg-eA-A97"/>
+                <constraint firstItem="5RY-Nh-gSn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="s08-iN-sjz"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="119" height="131"/>
+            <connections>
+                <outlet property="lbDay" destination="oMf-XL-Hkc" id="wNh-q2-Sdr"/>
+            </connections>
             <point key="canvasLocation" x="59.5" y="92.5"/>
         </collectionViewCell>
     </objects>

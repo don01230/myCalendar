@@ -27,6 +27,8 @@
 		3184ACEA2121321D00A1504E /* ZOZolaZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */; };
 		31BE13082144360A00A54276 /* yearHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE13072144360A00A54276 /* yearHeaderCollectionReusableView.m */; };
 		31BE130F21455D8900A54276 /* monthObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE130E21455D8900A54276 /* monthObject.m */; };
+		31C4FB11214FC9A000C9E962 /* firstWeekDayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4FB0F214FC9A000C9E962 /* firstWeekDayCollectionViewCell.m */; };
+		31C4FB12214FC9A000C9E962 /* firstWeekDayCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31C4FB10214FC9A000C9E962 /* firstWeekDayCollectionViewCell.xib */; };
 		31CD51341ED9710A00E920E0 /* UITextField+IndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CD51331ED9710A00E920E0 /* UITextField+IndexPath.m */; };
 		31D0F8201E12893700C5E515 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F81F1E12893700C5E515 /* main.m */; };
 		31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F8221E12893700C5E515 /* AppDelegate.m */; };
@@ -36,6 +38,9 @@
 		31D0F82E1E12893700C5E515 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31D0F82C1E12893700C5E515 /* LaunchScreen.storyboard */; };
 		31D0F8391E12893700C5E515 /* MyCalenderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F8381E12893700C5E515 /* MyCalenderTests.m */; };
 		31D0F8441E12893700C5E515 /* MyCalenderUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0F8431E12893700C5E515 /* MyCalenderUITests.m */; };
+		31E57387214C05BB00629891 /* monthCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E57386214C05BB00629891 /* monthCollectionViewController.m */; };
+		31E5738D214CF5B400629891 /* monthHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E5738C214CF5B400629891 /* monthHeaderView.xib */; };
+		31E57390214D283100629891 /* monthHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5738F214D283100629891 /* monthHeaderView.m */; };
 		31F2032820FC4C8C00DA736C /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F2032720FC4C8C00DA736C /* MyCollectionViewCell.m */; };
 		31F2032B20FC6A0600DA736C /* collectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F2032A20FC6A0600DA736C /* collectionViewController.m */; };
 		4BFA783E2FA52597F373E8B0 /* Pods_MyCalender.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC6CFE2ADB5FE6946A9DDDF /* Pods_MyCalender.framework */; };
@@ -93,6 +98,9 @@
 		31BE13072144360A00A54276 /* yearHeaderCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearHeaderCollectionReusableView.m; sourceTree = "<group>"; };
 		31BE130D21455D8900A54276 /* monthObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthObject.h; sourceTree = "<group>"; };
 		31BE130E21455D8900A54276 /* monthObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = monthObject.m; sourceTree = "<group>"; };
+		31C4FB0E214FC9A000C9E962 /* firstWeekDayCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = firstWeekDayCollectionViewCell.h; sourceTree = "<group>"; };
+		31C4FB0F214FC9A000C9E962 /* firstWeekDayCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = firstWeekDayCollectionViewCell.m; sourceTree = "<group>"; };
+		31C4FB10214FC9A000C9E962 /* firstWeekDayCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = firstWeekDayCollectionViewCell.xib; sourceTree = "<group>"; };
 		31CD51321ED9710A00E920E0 /* UITextField+IndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+IndexPath.h"; sourceTree = "<group>"; };
 		31CD51331ED9710A00E920E0 /* UITextField+IndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+IndexPath.m"; sourceTree = "<group>"; };
 		31D0F81B1E12893700C5E515 /* MyCalender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalender.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +119,11 @@
 		31D0F83F1E12893700C5E515 /* MyCalenderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCalenderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31D0F8431E12893700C5E515 /* MyCalenderUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCalenderUITests.m; sourceTree = "<group>"; };
 		31D0F8451E12893700C5E515 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31E57385214C05BB00629891 /* monthCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthCollectionViewController.h; sourceTree = "<group>"; };
+		31E57386214C05BB00629891 /* monthCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = monthCollectionViewController.m; sourceTree = "<group>"; };
+		31E5738C214CF5B400629891 /* monthHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = monthHeaderView.xib; sourceTree = "<group>"; };
+		31E5738E214D283100629891 /* monthHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthHeaderView.h; sourceTree = "<group>"; };
+		31E5738F214D283100629891 /* monthHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = monthHeaderView.m; sourceTree = "<group>"; };
 		31F2032620FC4C8C00DA736C /* MyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
 		31F2032720FC4C8C00DA736C /* MyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		31F2032920FC6A0600DA736C /* collectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = collectionViewController.h; sourceTree = "<group>"; };
@@ -187,6 +200,14 @@
 				315BB459213EF55900D7108C /* dayCollectionViewCell.xib */,
 				315BB464213FBBB900D7108C /* monthCollectionView.h */,
 				315BB465213FBBB900D7108C /* monthCollectionView.m */,
+				31E57385214C05BB00629891 /* monthCollectionViewController.h */,
+				31E57386214C05BB00629891 /* monthCollectionViewController.m */,
+				31E5738C214CF5B400629891 /* monthHeaderView.xib */,
+				31E5738E214D283100629891 /* monthHeaderView.h */,
+				31E5738F214D283100629891 /* monthHeaderView.m */,
+				31C4FB0E214FC9A000C9E962 /* firstWeekDayCollectionViewCell.h */,
+				31C4FB0F214FC9A000C9E962 /* firstWeekDayCollectionViewCell.m */,
+				31C4FB10214FC9A000C9E962 /* firstWeekDayCollectionViewCell.xib */,
 			);
 			name = monthCollectionView;
 			sourceTree = "<group>";
@@ -436,6 +457,8 @@
 				315BB45B213EF55900D7108C /* dayCollectionViewCell.xib in Resources */,
 				31D0F82B1E12893700C5E515 /* Assets.xcassets in Resources */,
 				313C27C21EC4B1B100869084 /* topView.xib in Resources */,
+				31C4FB12214FC9A000C9E962 /* firstWeekDayCollectionViewCell.xib in Resources */,
+				31E5738D214CF5B400629891 /* monthHeaderView.xib in Resources */,
 				311E0566213956F1001D0EAF /* yearCollectionViewCell.xib in Resources */,
 				31D0F8291E12893700C5E515 /* Main.storyboard in Resources */,
 				311AF34520CA3DD200E41208 /* yearTableViewCell.xib in Resources */,
@@ -543,13 +566,16 @@
 			files = (
 				313C27BD1EC3DC7500869084 /* addEventViewController.m in Sources */,
 				315BB45A213EF55900D7108C /* dayCollectionViewCell.m in Sources */,
+				31E57390214D283100629891 /* monthHeaderView.m in Sources */,
 				31BE13082144360A00A54276 /* yearHeaderCollectionReusableView.m in Sources */,
 				31CD51341ED9710A00E920E0 /* UITextField+IndexPath.m in Sources */,
 				316CA395211C78DF00EDCC91 /* navigationController.m in Sources */,
 				31BE130F21455D8900A54276 /* monthObject.m in Sources */,
 				316CA398211C807700EDCC91 /* detailViewController.m in Sources */,
+				31C4FB11214FC9A000C9E962 /* firstWeekDayCollectionViewCell.m in Sources */,
 				3139BCAA2138152300194F01 /* yearCollectionViewController.m in Sources */,
 				31D0F8261E12893700C5E515 /* monthViewController.m in Sources */,
+				31E57387214C05BB00629891 /* monthCollectionViewController.m in Sources */,
 				315BB466213FBBB900D7108C /* monthCollectionView.m in Sources */,
 				313C27C01EC4AFF900869084 /* topView.m in Sources */,
 				31F2032820FC4C8C00DA736C /* MyCollectionViewCell.m in Sources */,

@@ -272,7 +272,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="aHA-FI-xdX"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showOldMonth" id="aHA-FI-xdX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -349,7 +349,6 @@
                                 <size key="customSize" width="128" height="128"/>
                                 <connections>
                                     <outlet property="imageView" destination="8GR-Cf-x8K" id="iZE-KI-ESN"/>
-                                    <segue destination="VNJ-DX-xhA" kind="show" identifier="showImage" id="oAY-Li-nzQ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -375,6 +374,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="E9z-8S-Ral"/>
+                    <connections>
+                        <segue destination="VNJ-DX-xhA" kind="show" identifier="showImage" id="Iok-kZ-hmW"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7L-I1-Z9k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -384,7 +386,7 @@
         <scene sceneID="xnm-yj-Ail">
             <objects>
                 <navigationController storyboardIdentifier="newYearNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" toolbarHidden="NO" id="GiY-bY-zc4" userLabel="yearNavigationController" customClass="navigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g7x-w7-42K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="g7x-w7-42K">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -405,7 +407,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="newYearCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ld1-0j-o2Z" userLabel="newYearCollectionViewController" customClass="yearCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="t1D-js-rPC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SrM-F4-Ohe">
@@ -415,25 +417,13 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="monthCell" id="fzP-ss-Zft" customClass="yearCollectionViewCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="monthCell" id="fzP-ss-Zft" customClass="yearCollectionViewCell">
                                 <rect key="frame" x="0.0" y="60" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzN-uv-S8K">
-                                            <rect key="frame" x="8" y="8" width="112" height="112"/>
-                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                    </subviews>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="uzN-uv-S8K" firstAttribute="top" secondItem="fzP-ss-Zft" secondAttribute="topMargin" id="Wid-HG-JmS"/>
-                                    <constraint firstItem="uzN-uv-S8K" firstAttribute="leading" secondItem="fzP-ss-Zft" secondAttribute="leadingMargin" id="ffJ-e9-sYP"/>
-                                    <constraint firstItem="uzN-uv-S8K" firstAttribute="trailing" secondItem="fzP-ss-Zft" secondAttribute="trailingMargin" id="qWc-94-Vy7"/>
-                                    <constraint firstItem="uzN-uv-S8K" firstAttribute="bottom" secondItem="fzP-ss-Zft" secondAttribute="bottomMargin" id="zie-mU-lNG"/>
-                                </constraints>
                                 <size key="customSize" width="128" height="128"/>
                             </collectionViewCell>
                         </cells>
@@ -499,11 +489,47 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnToday" destination="tPY-Nu-vIl" id="j1W-Vt-2Pp"/>
+                        <segue destination="h3S-s9-UKo" kind="show" identifier="showMonth" id="4jX-mD-CHi"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTw-kx-Hrd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5879" y="743"/>
+        </scene>
+        <!--monthCollectionViewController-->
+        <scene sceneID="3wU-jJ-i8a">
+            <objects>
+                <collectionViewController storyboardIdentifier="monthCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h3S-s9-UKo" userLabel="monthCollectionViewController" customClass="monthCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="syP-gi-9hU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="9qO-pL-fMG">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="dayCell" id="YaG-aN-xyz" customClass="dayCollectionViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="h3S-s9-UKo" id="faq-d3-vti"/>
+                            <outlet property="delegate" destination="h3S-s9-UKo" id="498-DT-19K"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="uWh-Oj-3bK"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ISl-C3-hoo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5038" y="743"/>
         </scene>
         <!--detailViewController-->
         <scene sceneID="Tv9-DO-XVX">
@@ -576,5 +602,5 @@
             <point key="canvasLocation" x="-2685" y="-9"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

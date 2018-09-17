@@ -10,4 +10,7 @@
 
 @interface dayCollectionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *lbDay;
+@property BOOL notThisMonth;
+
 @end

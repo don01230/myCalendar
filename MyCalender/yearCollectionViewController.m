@@ -28,6 +28,7 @@ static NSString * const monthReuseIdentifier = @"yearCollectionViewCell";
 static NSString * const yearHeaderReuseIdentifier = @"newYearHeader";
 bool isFirst=YES;
 BOOL isScroll=YES;
+SSYearNode *ssYear;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,28 +48,24 @@ BOOL isScroll=YES;
     
     _calendar = [NSCalendar currentCalendar];
     
+    _today=[NSDate date];
+    
     _fromDate = [self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:((^{
         NSDateComponents *components=[NSDateComponents new];
         components.year=-6;
         return components;
-    })()) toDate:[NSDate date] options:0]];
+    })()) toDate:_today options:0]];
     
     _toDate = [self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:((^{
         NSDateComponents *components=[NSDateComponents new];
         components.year=6;
         return components;
-    })()) toDate:[NSDate date] options:0]];
+    })()) toDate:_today options:0]];
     
     _currentYear = [SSCalendarUtils currentYear];
-
-//    NSDateComponents *todayYearMonthDayComponents = [self.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
-//    _today = [self.calendar dateFromComponents:todayYearMonthDayComponents];
-    _today=[NSDate date];
     
     [_btnToday setTarget:self];
     [_btnToday setAction:@selector(scrollToToday)];
-    
-    
     
 }
 
@@ -84,13 +81,13 @@ BOOL isScroll=YES;
     [super viewDidLayoutSubviews];
     
     if(isFirst){
-        [self scrollToDate:[NSDate date] animated:NO];
+        [self scrollToDate:_today animated:NO];
         isFirst=NO;
     }
     
 }
 -(void)scrollToToday{
-    [self scrollToDate:[NSDate date] animated:YES];
+    [self scrollToDate:_today animated:YES];
 
 }
 
@@ -224,9 +221,11 @@ BOOL isScroll=YES;
     })()) toDate:_fromDate options:0];
     
     RSDFDatePickerDate rsdfDate=[self pickerDateFromDate:date];
-    
-    SSYearNode *year= [[SSYearNode alloc] initWithValue:rsdfDate.year];
-    monthCell.thisMonth=year.months[indexPath.item];
+    if (ssYear.value!=rsdfDate.year) {
+        ssYear= [[SSYearNode alloc] initWithValue:rsdfDate.year];
+    }
+
+    monthCell.thisMonth=ssYear.months[indexPath.item];
     
     RSDFDatePickerDate todayDate=[self pickerDateFromDate:_today];
     if (rsdfDate.year==todayDate.year && rsdfDate.month==todayDate.month) {
@@ -327,6 +326,7 @@ BOOL isScroll=YES;
 
 - (void)viewWillLayoutSubviews{
 
+    
     if(self.collectionView.contentOffset.y < 0.0f){
         [self appendPastDates];
     }
@@ -368,7 +368,7 @@ BOOL isScroll=YES;
     if(![visibleCell count])
         return;
     
-    NSIndexPath *fromIndexPath = [cv indexPathForCell:(visibleCell[0])];
+    NSIndexPath *fromIndexPath = [cv indexPathForCell:((UICollectionViewCell *)visibleCell[0])];
     NSInteger fromSection = fromIndexPath.section;
     NSDate *fromSectionOfDate = [self dateForFirstMonthInSection:fromSection];
     UICollectionViewLayoutAttributes *fromAttrs = [cvLayout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:fromSection]];
@@ -399,6 +399,12 @@ BOOL isScroll=YES;
     NSDateComponents *dateComponents = [self.calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:date];
     dateComponents.month=1;
     return [self.calendar dateFromComponents:dateComponents];
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    UIStoryboard *storyboard=(UIStoryboard *)[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    monthCollectionViewController *monthCollectionVC=[storyboard instantiateViewControllerWithIdentifier:@"monthCollectionViewController"];
+    [self.navigationController pushViewController:monthCollectionVC animated:YES];
 }
 
 @end
