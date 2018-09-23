@@ -1,20 +1,24 @@
 PODS:
   - RSDayFlow (1.7.0)
   - SSCalendar (0.0.3)
+  - ZOZolaZoomTransition (1.0.1)
 
 DEPENDENCIES:
   - RSDayFlow
   - SSCalendar
+  - ZOZolaZoomTransition
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - RSDayFlow
     - SSCalendar
+    - ZOZolaZoomTransition
 
 SPEC CHECKSUMS:
   RSDayFlow: 5c3af19200155a956eda4b3a82fec4020e0b5ffd
   SSCalendar: 65498d7ec6ff38b4aead38d3cf8bb317666a2fe4
+  ZOZolaZoomTransition: 529a1bee39aef91bf425c2ab423743163d0c6d9b
 
-PODFILE CHECKSUM: a09f90108bee7b9dc57c33efa664bea74753f05e
+PODFILE CHECKSUM: 7b4119cc413d1ebe39a72f5426ea96213bdfded3
 
 COCOAPODS: 1.5.3

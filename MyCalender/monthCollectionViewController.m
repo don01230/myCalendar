@@ -16,6 +16,7 @@
 @property NSDate *fromDate;
 @property NSDate *toDate;
 @property NSDate *today;
+@property NSString *scrollYear;
 
 @end
 
@@ -54,6 +55,10 @@ BOOL isFirstLoadingView=YES;
     
     _calendar=[NSCalendar currentCalendar];
     [self dateInitialize];
+
+//    NSDateComponents *component=[self.calendar components:NSCalendarUnitYear fromDate:_today];
+//    _scrollYear=[NSString stringWithFormat:@"%ld",component.year]
+//    self.navigationController.navigationBar.backItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"hello%ld",component.year] style:UIBarButtonItemStylePlain target:self action:nil];
 }
 
 - (UIImageView *)findHairlineImageViewUnder:(UIView *)view
@@ -80,10 +85,20 @@ BOOL isFirstLoadingView=YES;
 //- (void)viewDidDisappear:(BOOL)animated{
 //    [super viewDidDisappear:animated];
 //    UIImageView* blackLineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
-//    //隐藏黑线（在viewWillAppear时隐藏，在viewWillDisappear时显示）
 //    blackLineImageView.hidden = NO;
 //}
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self scrollToDate:_today animated:NO];
+    
+//    NSDateComponents *component=[self.calendar components:NSCalendarUnitYear fromDate:_today];
+//    UIBarButtonItem *newBackButton =
+//    [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"hello%ld",component.year]
+//                                     style:UIBarButtonItemStylePlain
+//                                    target:self
+//                                    action:nil];
+//    [[self navigationItem] setLeftBarButtonItem:newBackButton];
+}
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
 //    monthHeaderView *monthHeader=[[monthHeaderView alloc] init];
@@ -94,14 +109,34 @@ BOOL isFirstLoadingView=YES;
 //    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[monthHeader]-0-|" options:0 metrics:nil views:views]];
 //    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[monthHeader(15)]" options:0 metrics:nil views:views]];
 //}
+- (void)viewWillLayoutSubviews{
+    for (firstWeekDayCollectionViewCell *cell in [self.collectionView visibleCells]) {
+        if ([cell isKindOfClass:[firstWeekDayCollectionViewCell class]]) {
+            if ((int)cell.intMonth>1) {
+                self.navigationController.navigationBar.backItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:cell.strYear style:UIBarButtonItemStylePlain target:self action:nil];
+            }
+        }
+    }
+//    self.navigationController.navigationBar.backItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"%ld",component.year] style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    if(self.collectionView.contentOffset.y < 0.0f){
+        [self appendPastDates];
+    }
+    
+    if(self.collectionView.contentOffset.y > (self.collectionView.contentSize.height - CGRectGetHeight(self.collectionView.bounds))){
+        [self appendFutureDates];
+    }
+    
+    [super viewWillLayoutSubviews];
+}
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    if(isFirstLoadingView){
-        [self scrollToDate:_today animated:NO];
-        isFirstLoadingView=NO;
-    }
+//    if(isFirstLoadingView){
+//        [self scrollToDate:_today animated:NO];
+//        isFirstLoadingView=NO;
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,18 +179,19 @@ BOOL isFirstLoadingView=YES;
             return dateComponents;
         })()) toDate:firstDayInMonth options:0];
         RSDFDatePickerDate cellPickerDate = [self pickerDateFromDate:cellDate];
+        cell.strYear=[NSString stringWithFormat:@"%ld",cellPickerDate.year];
+        cell.intMonth=cellPickerDate.month;
 
         cell.lbDay.text = [NSString stringWithFormat:@"%tu", cellPickerDate.day];
-
         RSDFDatePickerDate firstDayPickerDate = [self pickerDateFromDate:firstDayInMonth];
         cell.notThisMonth = !((firstDayPickerDate.year == cellPickerDate.year) && (firstDayPickerDate.month == cellPickerDate.month));
         if(cell.notThisMonth==YES){
             cell.hidden=YES;
         }else{
+            NSDateComponents *components=[self.calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:_today];
             if(cellPickerDate.day==1){
                 NSString *title=[[[NSDateFormatter alloc] init] shortMonthSymbols][cellPickerDate.month-1];
                 cell.lbMonth.text=title;
-                NSDateComponents *components=[self.calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:_today];
                 if (cellPickerDate.year==components.year && cellPickerDate.month==components.month) {
                     cell.lbMonth.textColor=[UIColor blueColor];
                 }else{
@@ -170,14 +206,21 @@ BOOL isFirstLoadingView=YES;
             }else{
                 cell.lbDay.textColor=[UIColor blackColor];
             }
-            cell.hidden=NO;
+            if(cellPickerDate.year==components.year && cellPickerDate.month==components.month && cellPickerDate.day==components.day){
+                cell.lbDay.backgroundColor=[UIColor blueColor];
+                cell.lbDay.layer.cornerRadius=cell.frame.size.width/2.0;
+                cell.lbDay.layer.masksToBounds=YES;
+                cell.lbDay.textColor=[UIColor whiteColor];
+            }else{
+                cell.lbDay.backgroundColor=[UIColor whiteColor];
+            }
+                cell.hidden=NO;
         }
 
         [cell setNeedsDisplay];
         return cell;
     }else{
         dayCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:dayReuseIdentifier forIndexPath:indexPath];
-    
     // Configure the cell
         NSDate *firstDayInMonth = [self dateForFirstDayInSection:indexPath.section];
         NSUInteger firstDayInMonthWeekday = [self reorderedWeekday:[self.calendar components:NSCalendarUnitWeekday fromDate:firstDayInMonth].weekday];
@@ -202,11 +245,22 @@ BOOL isFirstLoadingView=YES;
             }else{
                 cell.lbDay.textColor=[UIColor blackColor];
             }
+            NSDateComponents *components=[self.calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:_today];
+            if(cellPickerDate.year==components.year && cellPickerDate.month==components.month  && cellPickerDate.day==components.day){
+                cell.lbDay.backgroundColor=[UIColor blueColor];
+                cell.lbDay.layer.cornerRadius=cell.frame.size.width/2.0;
+                cell.lbDay.layer.masksToBounds=YES;
+                cell.lbDay.textColor=[UIColor whiteColor];
+            }else{
+                cell.lbDay.backgroundColor=[UIColor whiteColor];
+            }
+            
             cell.hidden=NO;
         }
-
-//        cell.backgroundColor=[UIColor redColor];
-    
+//        cell.lbDay.backgroundColor=[UIColor redColor];
+//        NSLog(@"cell.lbDay.frame.size.width:%f",cell.lbDay.frame.size.width);
+//        cell.lbDay.layer.cornerRadius=cell.frame.size.width/2.0;
+//        cell.lbDay.layer.masksToBounds=YES;
         [cell setNeedsDisplay];
         return cell;
     }
@@ -292,8 +346,9 @@ BOOL isFirstLoadingView=YES;
     })()) toDate:(now > self.fromDate ? now : self.fromDate) options:0]];
 //    NSLog(@"toDate:%@",_toDate);
     
-    NSDateComponents *todayYearMonthDayComponents = [self.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
-    _today = [self.calendar dateFromComponents:todayYearMonthDayComponents];
+//    NSDateComponents *todayYearMonthDayComponents = [self.calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+//    _today = [self.calendar dateFromComponents:todayYearMonthDayComponents];
+    _today=[NSDate date];
 //    NSLog(@"today:%@",_today);
 }
 
@@ -424,4 +479,59 @@ BOOL isFirstLoadingView=YES;
     CGPoint topOfHeader = CGPointMake(0, headerRect.origin.y - self.collectionView.contentInset.top);
     [self.collectionView setContentOffset:topOfHeader animated:animated];
 }
+- (IBAction)btnToday:(id)sender {
+    [self scrollToDate:_today animated:YES];
+}
+
+- (void)appendFutureDates
+{
+    [self shiftDatesByComponents:((^{
+        NSDateComponents *dateComponents = [NSDateComponents new];
+        dateComponents.month = 6;
+        return dateComponents;
+    })())];
+}
+
+- (void)appendPastDates
+{
+    [self shiftDatesByComponents:((^{
+        NSDateComponents *dateComponents = [NSDateComponents new];
+        dateComponents.month = -6;
+        return dateComponents;
+    })())];
+}
+
+- (void)shiftDatesByComponents:(NSDateComponents *)components
+{
+    UICollectionView *cv = self.collectionView;
+    UICollectionViewLayout *cvLayout = self.collectionView.collectionViewLayout;
+    
+    NSArray *visibleCells = [cv visibleCells];
+    if (![visibleCells count])
+        return;
+    
+    NSIndexPath *fromIndexPath = [cv indexPathForCell:((UICollectionViewCell *)visibleCells[0]) ];
+    NSInteger fromSection = fromIndexPath.section;
+    NSDate *fromSectionOfDate = [self dateForFirstDayInSection:fromSection];
+    UICollectionViewLayoutAttributes *fromAttrs = [cvLayout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:fromSection]];
+    CGPoint fromSectionOrigin = [self.view convertPoint:fromAttrs.frame.origin fromView:cv];
+
+    _fromDate = [self dateWithFirstDayOfMonth:[self.calendar dateByAddingComponents:components toDate:self.fromDate options:0]];
+
+    _toDate = [self dateWithFirstDayOfMonth:[self.calendar dateByAddingComponents:components toDate:self.toDate options:0]];
+    
+    [cv reloadData];
+    [cvLayout invalidateLayout];
+    [cvLayout prepareLayout];
+    
+    NSInteger toSection = [self sectionForDate:fromSectionOfDate];
+    UICollectionViewLayoutAttributes *toAttrs = [cvLayout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:toSection]];
+    CGPoint toSectionOrigin = [self.view convertPoint:toAttrs.frame.origin fromView:cv];
+    
+    [cv setContentOffset:(CGPoint) {
+        cv.contentOffset.x,
+        cv.contentOffset.y + (toSectionOrigin.y - fromSectionOrigin.y)
+    }];
+}
+
 @end

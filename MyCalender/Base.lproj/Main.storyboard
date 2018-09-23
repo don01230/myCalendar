@@ -467,14 +467,6 @@
                         <barButtonItem title="Today" id="tPY-Nu-vIl">
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Olf-kd-LYh"/>
-                        <barButtonItem title="Calendar" id="Wbg-dS-gFp">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="g0I-Bb-bUr"/>
-                        <barButtonItem title="Inbox" id="Bgg-WA-68T">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="CHY-xP-aHU">
                         <rightBarButtonItems>
@@ -500,7 +492,7 @@
         <scene sceneID="3wU-jJ-i8a">
             <objects>
                 <collectionViewController storyboardIdentifier="monthCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h3S-s9-UKo" userLabel="monthCollectionViewController" customClass="monthCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="syP-gi-9hU">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="syP-gi-9hU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -525,6 +517,13 @@
                             <outlet property="delegate" destination="h3S-s9-UKo" id="498-DT-19K"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems>
+                        <barButtonItem title="Today" id="SwE-IO-SQu" userLabel="btnToday">
+                            <connections>
+                                <action selector="btnToday:" destination="h3S-s9-UKo" id="P8W-1Q-RDk"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="uWh-Oj-3bK"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISl-C3-hoo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -602,5 +601,4 @@
             <point key="canvasLocation" x="-2685" y="-9"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

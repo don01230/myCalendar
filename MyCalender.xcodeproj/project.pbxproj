@@ -24,7 +24,6 @@
 		316CA398211C807700EDCC91 /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CA397211C807700EDCC91 /* detailViewController.m */; };
 		31735DB720AC758300A66F36 /* yearTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31735DB620AC758300A66F36 /* yearTableViewController.m */; };
 		31735DBA20AC77DA00A66F36 /* yearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31735DB920AC77DA00A66F36 /* yearTableViewCell.m */; };
-		3184ACEA2121321D00A1504E /* ZOZolaZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */; };
 		31BE13082144360A00A54276 /* yearHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE13072144360A00A54276 /* yearHeaderCollectionReusableView.m */; };
 		31BE130F21455D8900A54276 /* monthObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BE130E21455D8900A54276 /* monthObject.m */; };
 		31C4FB11214FC9A000C9E962 /* firstWeekDayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C4FB0F214FC9A000C9E962 /* firstWeekDayCollectionViewCell.m */; };
@@ -92,8 +91,6 @@
 		31735DB620AC758300A66F36 /* yearTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearTableViewController.m; sourceTree = "<group>"; };
 		31735DB820AC77DA00A66F36 /* yearTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yearTableViewCell.h; sourceTree = "<group>"; };
 		31735DB920AC77DA00A66F36 /* yearTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearTableViewCell.m; sourceTree = "<group>"; };
-		3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZOZolaZoomTransition.m; sourceTree = "<group>"; };
-		3184ACE92121321D00A1504E /* ZOZolaZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZOZolaZoomTransition.h; sourceTree = "<group>"; };
 		31BE13062144360A00A54276 /* yearHeaderCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = yearHeaderCollectionReusableView.h; sourceTree = "<group>"; };
 		31BE13072144360A00A54276 /* yearHeaderCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = yearHeaderCollectionReusableView.m; sourceTree = "<group>"; };
 		31BE130D21455D8900A54276 /* monthObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = monthObject.h; sourceTree = "<group>"; };
@@ -248,8 +245,6 @@
 			children = (
 				31BE130C21455D6800A54276 /* monthObject */,
 				315BB451213EF48600D7108C /* monthCollectionView */,
-				3184ACE92121321D00A1504E /* ZOZolaZoomTransition.h */,
-				3184ACE82121321D00A1504E /* ZOZolaZoomTransition.m */,
 				3139BCA42138144F00194F01 /* yearCollectionView */,
 				31F2032520FC4BFF00DA736C /* MyCollectionViewCell */,
 				311AF33D20AE84D900E41208 /* yearTableViewCell */,
@@ -492,11 +487,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyCalender/Pods-MyCalender-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RSDayFlow/RSDayFlow.framework",
 				"${BUILT_PRODUCTS_DIR}/SSCalendar/SSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/ZOZolaZoomTransition/ZOZolaZoomTransition.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSDayFlow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZOZolaZoomTransition.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -586,7 +583,6 @@
 				31D0F8231E12893700C5E515 /* AppDelegate.m in Sources */,
 				31735DBA20AC77DA00A66F36 /* yearTableViewCell.m in Sources */,
 				31D0F8201E12893700C5E515 /* main.m in Sources */,
-				3184ACEA2121321D00A1504E /* ZOZolaZoomTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

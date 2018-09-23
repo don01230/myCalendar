@@ -19,10 +19,11 @@
 @property NSInteger currentYear;
 @property NSDate *startDate;
 @property NSDate *endDate;
+@property yearCollectionViewCell *selectedCell;
 
 @end
 
-@implementation yearCollectionViewController
+@implementation yearCollectionViewController 
 
 static NSString * const monthReuseIdentifier = @"yearCollectionViewCell";
 static NSString * const yearHeaderReuseIdentifier = @"newYearHeader";
@@ -66,13 +67,13 @@ SSYearNode *ssYear;
     
     [_btnToday setTarget:self];
     [_btnToday setAction:@selector(scrollToToday)];
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self scrollToDate:_today animated:NO];
     // scrolling here doesn't work (results in your assertion failure)
 }
 
@@ -80,10 +81,10 @@ SSYearNode *ssYear;
 {
     [super viewDidLayoutSubviews];
     
-    if(isFirst){
-        [self scrollToDate:_today animated:NO];
-        isFirst=NO;
-    }
+//    if(isFirst){
+//        [self scrollToDate:_today animated:NO];
+//        isFirst=NO;
+//    }
     
 }
 -(void)scrollToToday{
@@ -378,7 +379,7 @@ SSYearNode *ssYear;
     _fromDate=[self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:components toDate:self.fromDate options:0]];
     
     _toDate=[self dateWithFirstMonthOfYear:[self.calendar dateByAddingComponents:components toDate:self.toDate options:0]];
-    
+
     [cv reloadData];
     [cvLayout invalidateLayout];
     [cvLayout prepareLayout];
@@ -386,9 +387,7 @@ SSYearNode *ssYear;
     NSInteger toSection = [self sectionForDate:fromSectionOfDate];
     UICollectionViewLayoutAttributes *toAttrs = [cvLayout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:toSection]];
     CGPoint toSectionOrigin = [self.view convertPoint:toAttrs.frame.origin fromView:cv];
-//    CGPoint toSectionOrigin = toAttrs.frame.origin;
 
-    
     [cv setContentOffset:(CGPoint) {
        cv.contentOffset.x,
         cv.contentOffset.y + (toSectionOrigin.y-fromSectionOrigin.y)
@@ -402,8 +401,11 @@ SSYearNode *ssYear;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectedCell=(yearCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     UIStoryboard *storyboard=(UIStoryboard *)[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     monthCollectionViewController *monthCollectionVC=[storyboard instantiateViewControllerWithIdentifier:@"monthCollectionViewController"];
+    NSDateComponents *component=[self.calendar components:NSCalendarUnitYear fromDate:_today];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"%ld",component.year] style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:monthCollectionVC animated:YES];
 }
 

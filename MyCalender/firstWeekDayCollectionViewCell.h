@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface firstWeekDayCollectionViewCell : UICollectionViewCell
+@property NSString *strYear;
+@property NSInteger *intMonth;
 @property (weak, nonatomic) IBOutlet UILabel *lbMonth;
 @property (weak, nonatomic) IBOutlet UILabel *lbDay;
 @property BOOL notThisMonth;

@@ -8,6 +8,7 @@ target 'MyCalender' do
   use_frameworks!
   pod 'SSCalendar'
   pod 'RSDayFlow'
+  pod 'ZOZolaZoomTransition'
   # Pods for MyCalender
 
   target 'MyCalenderTests' do
