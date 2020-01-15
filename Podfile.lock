@@ -9,7 +9,7 @@ DEPENDENCIES:
   - ZOZolaZoomTransition
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - RSDayFlow
     - SSCalendar
     - ZOZolaZoomTransition
@@ -21,4 +21,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7b4119cc413d1ebe39a72f5426ea96213bdfded3
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4
