@@ -25,7 +25,7 @@
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const dayReuseIdentifier = @"dayCollectionViewCell";
 static NSString * const firstWeekDayReuseIdentifier = @"firstWeekDayCollectionViewCell";
-BOOL isFirstLoadingView=YES;
+BOOL isFirstLoadingView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +55,7 @@ BOOL isFirstLoadingView=YES;
     
     _calendar=[NSCalendar currentCalendar];
     [self dateInitialize];
+    isFirstLoadingView = YES;
 
 //    NSDateComponents *component=[self.calendar components:NSCalendarUnitYear fromDate:_today];
 //    _scrollYear=[NSString stringWithFormat:@"%ld",component.year]
@@ -89,6 +90,7 @@ BOOL isFirstLoadingView=YES;
 //}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.view layoutIfNeeded];
     [self scrollToDate:_today animated:NO];
     
 //    NSDateComponents *component=[self.calendar components:NSCalendarUnitYear fromDate:_today];
@@ -98,6 +100,11 @@ BOOL isFirstLoadingView=YES;
 //                                    target:self
 //                                    action:nil];
 //    [[self navigationItem] setLeftBarButtonItem:newBackButton];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+//    [self scrollToDate:_today animated:NO];
 }
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
@@ -110,6 +117,8 @@ BOOL isFirstLoadingView=YES;
 //    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[monthHeader(15)]" options:0 metrics:nil views:views]];
 //}
 - (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
     for (firstWeekDayCollectionViewCell *cell in [self.collectionView visibleCells]) {
         if ([cell isKindOfClass:[firstWeekDayCollectionViewCell class]]) {
             if ((int)cell.intMonth>1) {
@@ -117,17 +126,19 @@ BOOL isFirstLoadingView=YES;
             }
         }
     }
-//    self.navigationController.navigationBar.backItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"%ld",component.year] style:UIBarButtonItemStylePlain target:self action:nil];
+
+//    NSLog(@"self.collectionView.contentOffset:%f", self.collectionView.contentOffset.y);
+//    NSLog(@"self.collectionView.contentSize.height:%f", self.collectionView.contentSize.height);
+//    NSLog(@"CGRectGetHeight(self.collectionView.bounds):%f", CGRectGetHeight(self.collectionView.bounds));
     
     if(self.collectionView.contentOffset.y < 0.0f){
         [self appendPastDates];
+        NSLog(@"self appendPastDates");
     }
     
     if(self.collectionView.contentOffset.y > (self.collectionView.contentSize.height - CGRectGetHeight(self.collectionView.bounds))){
         [self appendFutureDates];
     }
-    
-    [super viewWillLayoutSubviews];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -427,6 +438,7 @@ BOOL isFirstLoadingView=YES;
     [cvLayout prepareLayout];
     
     NSIndexPath *dateItemIndexPath = [self indexPathForDate:date];
+//    NSLog(@"dateItemIndexPath:%@", dateItemIndexPath);
     NSInteger monthSection = [self sectionForDate:date];
     
     CGRect dateItemRect = [self frameForItemAtIndexPath:dateItemIndexPath];

@@ -211,7 +211,7 @@ SSYearNode *ssYear;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+        
     yearCollectionViewCell *monthCell = [collectionView dequeueReusableCellWithReuseIdentifier:monthReuseIdentifier forIndexPath:indexPath];
 
     NSDate *date = [self.calendar dateByAddingComponents:((^{
@@ -332,6 +332,9 @@ SSYearNode *ssYear;
         [self appendPastDates];
     }
 
+//    NSLog(@"self.collectionView.contentOffset:%f", self.collectionView.contentOffset.y);
+//    NSLog(@"self.collectionView.contentSize.height:%f", self.collectionView.contentSize.height);
+//    NSLog(@"CGRectGetHeight(self.collectionView.bounds):%f", CGRectGetHeight(self.collectionView.bounds));
     if(self.collectionView.contentOffset.y > (self.collectionView.contentSize.height - CGRectGetHeight(self.collectionView.bounds))){
         [self appendFutureDates];
     }
